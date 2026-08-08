@@ -1,0 +1,176 @@
+<!-- Case-Earth-Env.html for matthewignash.com. Paste into one Squarespace Code Block, once.
+     After that, edit pages/Case-Earth-Env.html in the matthewignash-site repo and push.
+     This block picks the change up within about five minutes, no re-paste needed.
+     The copy below is a fallback, so the page is never blank if GitHub is unreachable.
+     Fetched markup is stripped of scripts and event handlers before it is inserted. -->
+<div id="mi-case-earth-env">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .mc-case{max-width:880px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;color:#23211E;line-height:1.7;font-size:16px;
+    --paper:#FAF7F2;--paper-2:#F4EFE7;--panel:#FFFFFF;--ink:#23211E;--muted:#6B6760;--hair:#E2DBCF;--hair-2:#D8CFC0;
+    --accent:#C2552F;--accent-soft:#F4E7DF;--accent-ink:#7a311a;--teal:#2F6F5E;--teal-soft:#E4EFEA;--serif:'Fraunces',Georgia,serif;}
+  .mc-case *{box-sizing:border-box;}
+  .mc-case a{color:inherit;text-decoration:none;}
+  .mc-case .back{display:inline-block;font-size:13px;color:var(--muted);}
+  .mc-case .back:hover{color:var(--accent);}
+  .mc-case .chead{padding:10px 0 34px;border-bottom:1px solid var(--hair);}
+  .mc-case .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .mc-case .chead h1{font-family:var(--serif);font-weight:500;font-size:clamp(32px,4.4vw,50px);line-height:1.05;letter-spacing:-.02em;margin:14px 0 0;}
+  .mc-case .tagline{font-size:18px;color:var(--muted);margin-top:18px;max-width:36em;}
+  .mc-case .meta{font-size:13px;color:var(--muted);margin-top:18px;}
+  .mc-case .acts{margin-top:24px;display:flex;gap:14px;flex-wrap:wrap;}
+  .mc-case .btn{font-size:14px;font-weight:500;padding:12px 22px;border-radius:2px;transition:.15s;display:inline-flex;align-items:center;gap:8px;}
+  .mc-case .btn.solid{background:var(--ink);color:var(--paper);}
+  .mc-case .btn.solid:hover{background:var(--accent);}
+  .mc-case .btn.line{border:1px solid var(--hair-2);color:var(--ink);}
+  .mc-case .btn.line:hover{border-color:var(--ink);}
+  .mc-case .sec{padding:34px 0 6px;}
+  .mc-case .sec h2{font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 16px;}
+  .mc-case .sec p{font-size:17px;margin:18px 0;}
+  .mc-case .sec p:first-of-type{margin-top:0;}
+  .mc-case .callout{background:var(--accent-soft);border-radius:8px;padding:26px 30px;margin:28px 0;}
+  .mc-case .callout .lab{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .mc-case .callout p{font-family:var(--serif);font-size:20px;line-height:1.4;color:var(--accent-ink);margin:10px 0 0;}
+  .mc-case .pull{padding:54px 0;text-align:center;}
+  .mc-case .pull p{font-family:var(--serif);font-style:italic;font-size:clamp(22px,3vw,30px);line-height:1.42;max-width:24em;margin:0 auto;color:var(--ink);}
+  .mc-case .tags{font-size:14px;color:var(--muted);margin-top:6px;}
+  .mc-case .tags b{color:var(--ink);font-weight:500;}
+  .mc-case .status{background:var(--paper-2);border-radius:8px;padding:18px 22px;font-size:14.5px;color:var(--muted);margin:10px 0;}
+  .mc-case .spot{border:1px solid var(--hair);border-radius:10px;padding:24px 26px;background:var(--panel);margin:6px 0 14px;}
+  .mc-case .spot-para{font-size:17px;line-height:1.95;margin:0 0 18px;color:var(--ink);}
+  .mc-case .claim{border-bottom:1.5px dotted var(--hair-2);cursor:pointer;padding:1px 3px;border-radius:3px;transition:.15s;}
+  .mc-case .claim:hover{background:var(--accent-soft);border-bottom-color:var(--accent);}
+  .mc-case .claim.right{background:var(--teal-soft);border-bottom:1.5px solid var(--teal);color:#1d4a3e;}
+  .mc-case .claim.checked{background:var(--paper-2);border-bottom-color:var(--hair);}
+  .mc-case .spot-actions{display:flex;gap:10px;flex-wrap:wrap;}
+  .mc-case .spot-btn{font-family:inherit;font-size:13px;font-weight:500;padding:8px 16px;border-radius:2px;border:1px solid var(--hair-2);background:transparent;color:var(--ink);cursor:pointer;transition:.15s;}
+  .mc-case .spot-btn:hover{border-color:var(--ink);}
+  .mc-case .spot-result{font-size:15px;line-height:1.6;margin-top:16px;min-height:1.2em;color:var(--ink);}
+  .mc-case .spot-result.ok{color:#1d4a3e;}
+  .mc-case .spot-tie{font-size:15px;color:var(--muted);}
+</style>
+<div class="mc-case">
+
+  <a class="back" href="/work">← Back to all work</a>
+
+  <div class="chead">
+    <div class="eyebrow">Case study · AI literacy pilot</div>
+    <h1>Building AI literacy into a science course</h1>
+    <p class="tagline">A grade 11 and 12 Earth Science course that teaches AI literacy as a set of measurable competences inside real science work, not alongside it.</p>
+    <div class="meta">American International School Chennai, 2026–27. My framework, and mine to carry forward.</div>
+    <div class="acts">
+      View the live course site ↗
+      <a class="btn line" href="/cv">Read the CV</a>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>The course</h2>
+    <p>A redesigned grade 11 and 12 Earth Science course, taught across three sections, built to teach and measure AI literacy inside real science work rather than alongside it.</p>
+    <p>Every unit ends in something a real audience could read: a source dossier, a habitability report for a NASA-style evaluation committee, a climate brief for Chennai policymakers, a position paper argued at a stakeholder roundtable. Students defend each one aloud to a panel. The science is anchored in local ground wherever it can be, from the Cooum river to the Pallikaranai marsh to the Cauvery water dispute.</p>
+  </div>
+
+  <div class="sec">
+    <h2>A familiar discipline</h2>
+    <p>None of this is entirely new. For years we taught students to treat Wikipedia the same way: a good place to start research, never a source to cite in a final reference list. AI gets the same treatment, with documentation added. Naming AI as a source that is usually right but never guaranteed is what conditions a student to keep checking.</p>
+  </div>
+
+  <div class="sec">
+    <h2>AI as a source, not an oracle</h2>
+    <p>Students apply the same four-part source-evaluation framework to an AI response that they apply to a peer-reviewed paper. Every substantive AI use is documented on a template whose hardest field asks for one specific thing the AI got wrong. Six competences from the EU-OECD AI Literacy Framework are measured across the year through a pre and post diagnostic, per-block self-ratings, and coded student reflections.</p>
+    <div class="callout">
+      <div class="lab">The field that does the most work</div>
+      <p>Every student must name one specific thing the AI got wrong. If you cannot find one, you were not checking carefully enough. That single requirement turns passive users into critical ones.</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h2>Try it: spot what the AI got wrong</h2>
+    <p>Here is a confident AI answer about a real earthquake. One specific fact is wrong. Finding it is the move every student makes, every time. Click the claim you would check.</p>
+    <div class="spot">
+      <p class="spot-para">The 1964 Great Alaska earthquake struck near Anchorage on <span class="claim" data-a="0">27 March 1964</span>. It registered a moment magnitude of <span class="claim" data-a="1">9.0</span>, making it the most powerful earthquake in <span class="claim" data-a="0">North American history</span>. The shaking lasted about <span class="claim" data-a="0">four and a half minutes</span> and triggered a tsunami that reached the coast of California.</p>
+      <div class="spot-actions">
+        <button class="spot-btn" id="spot-reveal">Reveal the answer</button>
+        <button class="spot-btn" id="spot-reset">Reset</button>
+      </div>
+      <div class="spot-result" id="spot-result"></div>
+    </div>
+    <p class="spot-tie">That is the whole skill: treat the AI as a source, verify the confident specifics, and document what it got wrong.</p>
+  </div>
+
+  <div class="sec">
+    <h2>Language support, by design</h2>
+    <p>For multilingual learners, the course makes language support visible rather than covert. Vocabulary is pre-taught, sentence stems sit on every task and are offered to everyone rather than assigned by level, and translation is a legitimate, documented step rather than something to hide. The reading tool for the course's hardest primary source carries definitions in six languages, AI-generated and deliberately left unverified, so that the students who speak those languages are the ones who correct them. In that task, the multilingual student is the expert in the room.</p>
+  </div>
+
+  <div class="status">Everything here is written in the present and future because the study has not run yet. The pilot has school approval and parent consent, and results are coded after Unit 5. This page describes the design, not outcomes.</div>
+
+  <div class="pull">
+    <p>Could I explain to my teacher exactly what I did, and would I be comfortable doing so?</p>
+  </div>
+
+  <div class="sec">
+    <h2>Why it travels</h2>
+    <p>The framework is subject-agnostic. I built it in Earth and Environmental Science, but the source discipline, the documentation habit, and the visible-by-design language support transfer to any course, and I carry them forward into new material. In the end it is less about a tool and more about a stance: AI as a source to be evaluated, never a substitute for judgment.</p>
+    <div class="tags"><b>Role:</b> Designed and built the course, the framework, and the measurement. &nbsp;·&nbsp; <b>Tags:</b> Curriculum · Responsible AI · Assessment · Multilingual learners</div>
+  </div>
+
+</div>
+<script>
+(function(){
+  var claims = document.querySelectorAll('.mc-case .spot .claim');
+  var result = document.getElementById('spot-result');
+  if(!claims.length || !result) return;
+  var ERR = "Correct. The AI stated magnitude 9.0. The actual value is 9.2 (USGS). Small, but in science the specific number matters, and the student who catches it is the one who was checking.";
+  var OK = "That one checks out. Look again at the figure the AI states most plainly.";
+  claims.forEach(function(c){
+    c.addEventListener('click', function(){
+      if(c.dataset.a === '1'){ c.classList.add('right'); result.textContent = ERR; result.className = 'spot-result ok'; }
+      else { c.classList.add('checked'); result.textContent = OK; result.className = 'spot-result'; }
+    });
+  });
+  var rev = document.getElementById('spot-reveal');
+  var res = document.getElementById('spot-reset');
+  if(rev) rev.addEventListener('click', function(){
+    claims.forEach(function(c){ if(c.dataset.a === '1') c.classList.add('right'); });
+    result.textContent = ERR; result.className = 'spot-result ok';
+  });
+  if(res) res.addEventListener('click', function(){
+    claims.forEach(function(c){ c.classList.remove('right'); c.classList.remove('checked'); });
+    result.textContent = ''; result.className = 'spot-result';
+  });
+})();
+</script>
+</div>
+<script>
+(function () {
+  var mount = document.getElementById("mi-case-earth-env");
+
+  function scrubbed(markup) {
+    var parsed = new DOMParser().parseFromString(markup, "text/html");
+    [].forEach.call(parsed.querySelectorAll("script,iframe,object,embed"), function (node) {
+      node.remove();
+    });
+    [].forEach.call(parsed.querySelectorAll("*"), function (node) {
+      [].forEach.call([].slice.call(node.attributes), function (attr) {
+        var unsafe = /^on/i.test(attr.name) || /^\s*javascript:/i.test(attr.value);
+        if (unsafe) node.removeAttribute(attr.name);
+      });
+    });
+    return [].slice.call(parsed.head.childNodes).concat([].slice.call(parsed.body.childNodes));
+  }
+
+  fetch("https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/Case-Earth-Env.html", { cache: "no-cache" })
+    .then(function (response) {
+      if (!response.ok) throw new Error(response.status);
+      return response.text();
+    })
+    .then(function (markup) {
+      var nodes = markup.trim() ? scrubbed(markup) : [];
+      if (!nodes.length) return;
+      mount.textContent = "";
+      nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+    })
+    .catch(function () {});
+}());
+</script>

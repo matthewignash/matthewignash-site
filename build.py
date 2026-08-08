@@ -9,9 +9,13 @@ from pathlib import Path
 
 RAW_BASE = "https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages"
 CONTAINERS = {
-    "Contact-Page.html": "mi-contact",
-    "CV-Page.html": "mi-cv",
+    "Home-Page.html": "mi-home",
+    "About-Page.html": "mi-about",
+    "Work-Page.html": "mi-work",
     "Writing-Media-Page.html": "mi-writing",
+    "CV-Page.html": "mi-cv",
+    "Contact-Page.html": "mi-contact",
+    "Case-Earth-Env.html": "mi-case-earth-env",
 }
 
 LOADER = """<script>
