@@ -1,13 +1,13 @@
 <!-- CV PAGE. Paste into a single Squarespace Code Block on the CV page.
      Section background: #FAF7F2
-     ALSO: change this page's URL slug from 583544494043 to cv (Pages > CV > gear icon > URL Slug).
-     Enter cv with no leading slash; Squarespace shows the slash separately and rejects //cv.
-     If it still refuses, use curriculum-vitae and add a URL Mapping: /cv -> /curriculum-vitae 301.
-     Either way this fixes the homepage "Read the CV" button, which hardcodes /cv and currently 404s.
+     SLUG: this page lives at /curriculum-vitae. /cv still 404s, and the homepage
+     "Read the CV" button hardcodes /cv, so it needs a URL Mapping in Squarespace:
+     Settings > Advanced > URL Mappings, then:  /cv -> /curriculum-vitae 301
 
-     DOWNLOAD BUTTONS: these point at the contact form, so nothing is broken on day one.
-     Once the three PDFs are uploaded to Squarespace, swap each href for the PDF URL
-     (the commented block just below the buttons has the ready-made replacements).
+     THE FOUR BUTTONS are an emphasis switch, not downloads. They reorder Leadership
+     and impact via data-lean attributes and pure CSS. Nothing is ever hidden. When the
+     PDFs exist, add them as separate download links rather than replacing these.
+
      No email address appears on this page by design. Do not reintroduce mailto links. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -61,10 +61,51 @@
   .mcv-grid2 p{font-size:14.5px;color:#23211E;margin:0 0 22px;}
   .mcv-refs{font-size:13.5px;color:#6B6760;margin-top:26px;font-style:italic;}
 
+  /* Section nav. The Squarespace header is position:absolute and scrolls away,
+     so top:0 is safe here. scroll-margin-top keeps anchors clear of this bar. */
+  .mcv-nav{position:sticky;top:0;z-index:5;background:#FAF7F2;border-bottom:1px solid #E2DBCF;
+           margin-top:34px;padding:12px 0;display:flex;gap:24px;flex-wrap:wrap;}
+  .mcv-nav a{font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;
+             color:#6B6760;text-decoration:none;}
+  .mcv-nav a:hover{color:#C2552F;}
+  .mcv-sec{scroll-margin-top:64px;}
+
+  /* Emphasis switch. CSS only: the loader strips <script> from fetched markup,
+     and this way the buttons still work with JavaScript disabled. */
+  .mcv-lean{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+            clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+  .mcv-items{display:flex;flex-direction:column;}
+  label.mcv-btn{cursor:pointer;user-select:none;}
+
+  #mcv-lean-none:checked    ~ .mcv-dl label[for="mcv-lean-none"],
+  #mcv-lean-lead:checked    ~ .mcv-dl label[for="mcv-lean-lead"],
+  #mcv-lean-curr:checked    ~ .mcv-dl label[for="mcv-lean-curr"],
+  #mcv-lean-ib:checked      ~ .mcv-dl label[for="mcv-lean-ib"]{background:#23211E;color:#FAF7F2;border-color:#23211E;}
+
+  .mcv-lean:focus-visible ~ .mcv-dl label{outline:2px solid #C2552F;outline-offset:2px;}
+
+  #mcv-lean-lead:checked ~ .mcv-sec .mcv-items .mcv-it[data-lean~="lead"]{order:-2;}
+  #mcv-lean-lead:checked ~ .mcv-sec .mcv-items .mcv-ia[data-lean~="lead"]{order:-1;}
+  #mcv-lean-curr:checked ~ .mcv-sec .mcv-items .mcv-it[data-lean~="curr"]{order:-2;}
+  #mcv-lean-curr:checked ~ .mcv-sec .mcv-items .mcv-ia[data-lean~="curr"]{order:-1;}
+  #mcv-lean-ib:checked   ~ .mcv-sec .mcv-items .mcv-it[data-lean~="ib"]{order:-2;}
+  #mcv-lean-ib:checked   ~ .mcv-sec .mcv-items .mcv-ia[data-lean~="ib"]{order:-1;}
+
+  /* data-lean-first names the single row each emphasis opens on. Must come AFTER the
+     rules above and carry the same specificity, or .mcv-it[data-lean] outranks it and
+     the promoted rows fall back to source order. */
+  #mcv-lean-lead:checked ~ .mcv-sec .mcv-items .mcv-it[data-lean-first~="lead"]{order:-3;}
+  #mcv-lean-curr:checked ~ .mcv-sec .mcv-items .mcv-it[data-lean-first~="curr"]{order:-3;}
+  #mcv-lean-ib:checked   ~ .mcv-sec .mcv-items .mcv-it[data-lean-first~="ib"]{order:-3;}
+
   @media (max-width:860px){
     .mcv-it{grid-template-columns:1fr;gap:3px;}
     .mcv-grid2{grid-template-columns:1fr;}
     .mcv-grid2 > div + div{border-left:0;border-top:1px solid #E2DBCF;padding-left:0;padding-top:22px;}
+    .mcv-nav{gap:14px;padding:10px 0;}
+    .mcv-nav a{font-size:10.5px;letter-spacing:.08em;}
+    /* the nav wraps to two rows here, so anchors need more clearance than the 64px above */
+    .mcv-sec{scroll-margin-top:86px;}
   }
 </style>
 <div class="mcv">
@@ -74,35 +115,50 @@
   <div class="mcv-title">Instructional Leadership · Curriculum &amp; Assessment Coherence · IB Diploma Programme Work · People &amp; Operations · Responsible AI</div>
   <div class="mcv-contact"><a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/matthew-ignash-ba72332b6/">LinkedIn</a> &nbsp;·&nbsp; matthewignash.com</div>
 
-  <div class="mcv-dl">
-    <a class="mcv-btn solid" href="/contact">Request CV · Leadership &amp; Operations</a>
-    <a class="mcv-btn line" href="/contact">Request CV · Curriculum &amp; Innovation</a>
-    <a class="mcv-btn line" href="/contact">Request CV · IB Programme</a>
-  </div>
-  <!-- ONCE THE PDFs ARE UPLOADED, replace the three links above with these:
-  <a class="mcv-btn solid" href="PDF_URL_LEADERSHIP">Download CV · Leadership &amp; Operations ↓</a>
-  <a class="mcv-btn line" href="PDF_URL_CURRICULUM">Download CV · Curriculum &amp; Innovation ↓</a>
-  <a class="mcv-btn line" href="PDF_URL_IB">Download CV · IB Programme ↓</a>
-  -->
-  <div class="mcv-dlnote">Three emphases, one record. Name the one that fits the role when you get in touch and I will send it. The full document carries references.</div>
+  <!-- Emphasis switch. These radios must stay direct children of .mcv and must stay
+       BEFORE the sections, because the CSS reaches the rows with a sibling combinator. -->
+  <input class="mcv-lean" type="radio" name="mcv-lean" id="mcv-lean-none" checked>
+  <input class="mcv-lean" type="radio" name="mcv-lean" id="mcv-lean-lead">
+  <input class="mcv-lean" type="radio" name="mcv-lean" id="mcv-lean-curr">
+  <input class="mcv-lean" type="radio" name="mcv-lean" id="mcv-lean-ib">
 
-  <div class="mcv-sec">
+  <div class="mcv-dl">
+    <label class="mcv-btn line" for="mcv-lean-none">Full record</label>
+    <label class="mcv-btn line" for="mcv-lean-lead">Leadership &amp; Operations</label>
+    <label class="mcv-btn line" for="mcv-lean-curr">Curriculum &amp; Innovation</label>
+    <label class="mcv-btn line" for="mcv-lean-ib">IB Programme</label>
+  </div>
+  <div class="mcv-dlnote">One record, read three ways. Choosing an emphasis moves the most relevant work to the top of Leadership and impact; nothing is hidden. <a href="/contact" style="color:#2F6F5E;border-bottom:1px solid #C3D8CF;">Request the full CV</a> for the version written for that role, which also carries references.</div>
+
+  <nav class="mcv-nav" aria-label="Sections of this CV">
+    <a href="#mcv-profile">Profile</a>
+    <a href="#mcv-impact">Leadership &amp; impact</a>
+    <a href="#mcv-experience">Experience</a>
+    <a href="#mcv-advisory">Advisory</a>
+    <a href="#mcv-education">Education</a>
+  </nav>
+
+  <div class="mcv-sec" id="mcv-profile">
     <h2>Profile</h2>
     <p class="mcv-profile">I am an instructional leader and head of department who grows people and improves systems at the same time. I lead an eight-teacher science department across grades 6 to 12, supervise staff through a structured annual growth cycle with formal appraisal, and manage a zero-based budget of around US$50,000. Across four countries I have built the data and assessment systems a school runs on, served on accreditation visiting teams, sat on hiring panels from lab technician to Head of School, and designed wellbeing routines that lower stress while improving support. I build capacity before tools. Wellbeing is at the heart of how I lead: caring for students and staff is what lets a community take on the harder questions about where education is going.</p>
   </div>
 
-  <div class="mcv-sec">
+  <div class="mcv-sec" id="mcv-impact">
     <h2>Leadership &amp; impact</h2>
-    <div class="mcv-it"><b>Team and people leadership</b><span>Lead an eight-teacher science department across grades 6 to 12; mentor teachers on IB implementation, moderation, and calibration; built Compass Point, a transparent leadership-development pathway for colleagues, green-lit for 2026-27.</span></div>
-    <div class="mcv-it"><b>Staff supervision and appraisal</b><span>Supervise two lab technicians, running their annual feedback and growth cycle with Assistant Principal sign-off. Direct line-management with a formal appraisal process.</span></div>
-    <div class="mcv-it"><b>Hiring</b><span>Served on hiring panels for Head of School, Principal, Assistant Principal, teaching, and technical staff.</span></div>
-    <div class="mcv-it"><b>IB programme work</b><span>Designed and run a five-session internal assessment programme for the school's whole IB science cohort, across Biology, Chemistry and Physics at both levels, including students taught by colleagues. Led the transition of the Collaborative Science Project into grade 11, connecting it to students' CAS hours and to the middle school SAVAI programme, with a judged panel presentation at Middle School STEAM Week. Both running again in 2026-27.</span></div>
-    <div class="mcv-it"><b>Assessment and calibration</b><span>Established department moderation protocols: common success criteria, exemplars, blind double-marking, and routine calibration. Built an IB internal-assessment moderation tool pairing assessment expertise with an IBIS export.</span></div>
+    <!-- data-lean drives the emphasis switch at the top of the page. Values: lead, curr, ib.
+         Deliberately selective, roughly six rows per emphasis, so choosing one actually
+         changes what a reader meets first. Untagged rows simply keep their place. -->
+    <div class="mcv-items">
+    <div class="mcv-it" data-lean="lead ib" data-lean-first="lead"><b>Team and people leadership</b><span>Lead an eight-teacher science department across grades 6 to 12; mentor teachers on IB implementation, moderation, and calibration; built Compass Point, a transparent leadership-development pathway for colleagues, green-lit for 2026-27.</span></div>
+    <div class="mcv-it" data-lean="lead"><b>Staff supervision and appraisal</b><span>Supervise two lab technicians, running their annual feedback and growth cycle with Assistant Principal sign-off. Direct line-management with a formal appraisal process.</span></div>
+    <div class="mcv-it" data-lean="lead"><b>Hiring</b><span>Served on hiring panels for Head of School, Principal, Assistant Principal, teaching, and technical staff.</span></div>
+    <div class="mcv-it" data-lean="ib curr" data-lean-first="ib"><b>IB programme work</b><span>Designed and run a five-session internal assessment programme for the school's whole IB science cohort, across Biology, Chemistry and Physics at both levels, including students taught by colleagues. Led the transition of the Collaborative Science Project into grade 11, connecting it to students' CAS hours and to the middle school SAVAI programme, with a judged panel presentation at Middle School STEAM Week. Both running again in 2026-27.</span></div>
+    <div class="mcv-it" data-lean="ib curr"><b>Assessment and calibration</b><span>Established department moderation protocols: common success criteria, exemplars, blind double-marking, and routine calibration. Built an IB internal-assessment moderation tool pairing assessment expertise with an IBIS export.</span></div>
 
     <!-- IA OUTCOMES TABLE. Cleared for publication by Matthew, 2026-08-08: aggregate figures,
          no student identifiable, standard practice for a leadership CV.
          AGGREGATES ONLY. Never add per-subject subgroup counts (e.g. Biology HL n=3). -->
-    <div class="mcv-ia">
+    <div class="mcv-ia" data-lean="lead curr ib">
       <div class="mcv-ia-h">Internal assessment outcomes, Chemistry and Physics</div>
       <table>
         <thead><tr><th>Moderated IA</th><th>Before</th><th>After</th></tr></thead>
@@ -117,18 +173,19 @@
       <p>Chemistry and Physics combined, both levels, before and after the programme was introduced. Biology is excluded because the earlier year's data was not available to me. Figures count IA entries rather than students, since some candidates sit both subjects, and each year is a different cohort.</p>
       <p>The top band did not move, and I would not expect it to. A seven is scrutinised closely by moderators because it indicates near-perfection, and students who reach one were generally always going to. The change sits in the lower half: the grade four band halved and nothing fell below it. That is where the workshop was aimed. When students understand what the task is actually asking of them, the internal assessment becomes approachable, and that shows up here first.</p>
     </div>
-    <div class="mcv-it"><b>Curriculum coherence</b><span>Led a K-12 review of scientific skills, thinking, and dispositions; built a live vertical-alignment map giving one shared view of skill development from grade 6 to grade 12; rebuilt a full Earth and Environmental Science course around four throughlines across eight units.</span></div>
-    <div class="mcv-it"><b>Whole-school systems and data</b><span>Facilitate the Data Systems Council and authored its proposal to grow the school's data use and literacy; partnered with IT and the EAL director on a standalone WIDA dashboard; coordinated MAP K to 12; led the design of a school-wide digital hall-pass system with a cross-functional IT and admin team.</span></div>
-    <div class="mcv-it"><b>Professional learning beyond one school</b><span>Founded and run <a href="https://aicodingforeducators.org" style="color:#2F6F5E;border-bottom:1px solid #C3D8CF;">AI Coding for Educators</a>, a public programme where teachers build practical classroom tools with AI. Designed the model, built the site, gallery and submission pipeline, and recruit a rotating roster of international hosts, classroom teachers, podcast hosts and consultants, who each set one month's challenge from a real need in their own practice. Everything MIT licensed and free to use. First full monthly cycle from September 2026.</span></div>
-    <div class="mcv-it"><b>Student voice and policy</b><span>Co-facilitate the Student Advisory Forum with the High School Principal and lead it day to day. Set the agenda, run the meetings, and steer the group's projects, currently including school guidance on AI use and student behaviour.</span></div>
-    <div class="mcv-it"><b>Student wellbeing, behaviour and duty of care</b><span>Safeguarding trained. Residential trip lead for 20 students, in that role across multiple years. Ran grade-level meetings on students of concern, academic and behavioural, with counsellor and teacher follow-up. Ran PASS and Challenge Success wellbeing data cycles.</span></div>
-    <div class="mcv-it"><b>Operations and budget</b><span>Own a zero-based department budget of around US$50,000; helped plan lab safety upgrades and the renovation of preparation areas; led adoption of a digital lab-management system aligning inventory, requests, and safety workflows.</span></div>
+    <div class="mcv-it" data-lean="curr ib" data-lean-first="curr"><b>Curriculum coherence</b><span>Led a K-12 review of scientific skills, thinking, and dispositions; built a live vertical-alignment map giving one shared view of skill development from grade 6 to grade 12; rebuilt a full Earth and Environmental Science course around four throughlines across eight units.</span></div>
+    <div class="mcv-it" data-lean="curr"><b>Whole-school systems and data</b><span>Facilitate the Data Systems Council and authored its proposal to grow the school's data use and literacy; partnered with IT and the EAL director on a standalone WIDA dashboard; coordinated MAP K to 12; led the design of a school-wide digital hall-pass system with a cross-functional IT and admin team.</span></div>
+    <div class="mcv-it" data-lean="curr"><b>Professional learning beyond one school</b><span>Founded and run <a href="https://aicodingforeducators.org" style="color:#2F6F5E;border-bottom:1px solid #C3D8CF;">AI Coding for Educators</a>, a public programme where teachers build practical classroom tools with AI. Designed the model, built the site, gallery and submission pipeline, and recruit a rotating roster of international hosts, classroom teachers, podcast hosts and consultants, who each set one month's challenge from a real need in their own practice. Everything MIT licensed and free to use. First full monthly cycle from September 2026.</span></div>
+    <div class="mcv-it" data-lean="lead"><b>Student voice and policy</b><span>Co-facilitate the Student Advisory Forum with the High School Principal and lead it day to day. Set the agenda, run the meetings, and steer the group's projects, currently including school guidance on AI use and student behaviour.</span></div>
+    <div class="mcv-it" data-lean="lead"><b>Student wellbeing, behaviour and duty of care</b><span>Safeguarding trained. Residential trip lead for 20 students, in that role across multiple years. Ran grade-level meetings on students of concern, academic and behavioural, with counsellor and teacher follow-up. Ran PASS and Challenge Success wellbeing data cycles.</span></div>
+    <div class="mcv-it" data-lean="lead"><b>Operations and budget</b><span>Own a zero-based department budget of around US$50,000; helped plan lab safety upgrades and the renovation of preparation areas; led adoption of a digital lab-management system aligning inventory, requests, and safety workflows.</span></div>
     <div class="mcv-it"><b>Accreditation</b><span>CIS accreditation visiting team member. Previously a member of a combined CIS and IB accreditation team, co-facilitating Domain A on mission and vision.</span></div>
-    <div class="mcv-it"><b>Innovation and responsible AI</b><span>I build the systems described above rather than buying them: the vertical-alignment map, the IB internal assessment moderation tool with its IBIS export, the school-wide digital hall pass, and a reflection tool tracking student self-assessment against tagged success criteria. Designed a three-arm classroom study measuring what students actually build with AI. Use AI carefully, protecting privacy and integrity, and keeping human judgment central.</span></div>
+    <div class="mcv-it" data-lean="curr"><b>Innovation and responsible AI</b><span>I build the systems described above rather than buying them: the vertical-alignment map, the IB internal assessment moderation tool with its IBIS export, the school-wide digital hall pass, and a reflection tool tracking student self-assessment against tagged success criteria. Designed a three-arm classroom study measuring what students actually build with AI. Use AI carefully, protecting privacy and integrity, and keeping human judgment central.</span></div>
     <div class="mcv-it"><b>Family and community</b><span>Led plain-language parent workshops on assessment and learning; prepared board and parent briefs with clear KPIs.</span></div>
+    </div>
   </div>
 
-  <div class="mcv-sec">
+  <div class="mcv-sec" id="mcv-experience">
     <h2>Experience</h2>
     <div class="mcv-job">
       <div class="mcv-jrow"><h3>American International School Chennai</h3><span class="mcv-dates">2023 to present</span></div>
@@ -156,14 +213,14 @@
     </div>
   </div>
 
-  <div class="mcv-sec">
+  <div class="mcv-sec" id="mcv-advisory">
     <h2>Advisory &amp; community leadership</h2>
     <div class="mcv-it"><b>AI Leadership Council</b><span>Invited member, K-12 education subcommittee, convened by BoodleBox. I disclose this advisory role in any writing that discusses BoodleBox in classroom research.</span></div>
     <div class="mcv-it"><b>Vibecoding TeachMeet</b><span>Two recorded video sessions, Random Name Pickers and Quick-Check Polling, for the TeachMeet organised by Emma Faulkner and Gideon Williams.</span></div>
     <div class="mcv-it"><b>CIS</b><span>Accreditation visiting team member, 2023 to present.</span></div>
   </div>
 
-  <div class="mcv-sec">
+  <div class="mcv-sec" id="mcv-education">
     <h2>Education, development &amp; recognition</h2>
     <div class="mcv-grid2">
       <div>

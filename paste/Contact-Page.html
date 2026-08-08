@@ -80,6 +80,13 @@
 (function () {
   var mount = document.getElementById("mi-contact");
 
+  // Squarespace Fluid Engine sizes a section by the grid rows it declares, not by
+  // its content, so a block placed once at a tall height leaves the section that
+  // tall forever. Collapsing the rows lets the section hug the block. Only safe
+  // when this block is alone in the grid; otherwise siblings would stack.
+  var grid = mount.closest(".fluid-engine");
+  if (grid && grid.children.length === 1) grid.style.gridTemplateRows = "auto";
+
   function scrubbed(markup) {
     var parsed = new DOMParser().parseFromString(markup, "text/html");
     [].forEach.call(parsed.querySelectorAll("script,iframe,object,embed"), function (node) {
