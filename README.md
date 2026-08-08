@@ -38,6 +38,21 @@ Fetched markup is parsed with `DOMParser` and stripped of `script`, `iframe`, `o
 defence in depth: this repo is the only source, but content crossing a network boundary onto
 the live domain should not be injected raw.
 
+The fetch uses `cache: "no-cache"`, which forces a revalidation against GitHub on every page
+load. Without it the browser honours `max-age=300` and a repeat visitor can sit on a stale
+copy for five minutes after a push. Revalidation is cheap, since an unchanged file comes back
+as a 304 with no body.
+
+## When a push is not enough
+
+A push updates what visitors *see*. It does not update the fallback copy sitting in the pasted
+Code Block, which stays as it was on the day you pasted. That is fine for ordinary edits.
+
+It is not fine when the point of the change is that the old content must stop existing, for
+example removing a personal detail. The fallback still carries it, in the page source, whether
+or not the fetch succeeds. **For that kind of change, run `build.py` and re-paste the block.**
+
+
 ## Why this repo is public
 
 Squarespace fetches these files from a visitor's browser, so they have to be publicly

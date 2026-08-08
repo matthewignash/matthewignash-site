@@ -32,7 +32,7 @@ LOADER = """<script>
     return [].slice.call(parsed.head.childNodes).concat([].slice.call(parsed.body.childNodes));
   }
 
-  fetch("__SOURCE__")
+  fetch("__SOURCE__", { cache: "no-cache" })
     .then(function (response) {
       if (!response.ok) throw new Error(response.status);
       return response.text();
