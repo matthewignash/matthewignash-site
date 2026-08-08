@@ -1,10 +1,14 @@
 <!-- CV PAGE. Paste into a single Squarespace Code Block on the CV page.
      Section background: #FAF7F2
-     ALSO: change this page's URL slug from /583544494043 to /cv (Pages > CV > gear icon > Navigation Title & URL Slug).
+     ALSO: change this page's URL slug from 583544494043 to cv (Pages > CV > gear icon > URL Slug).
+     Enter cv with no leading slash; Squarespace shows the slash separately and rejects //cv.
+     If it still refuses, use curriculum-vitae and add a URL Mapping: /cv -> /curriculum-vitae 301.
+     Either way this fixes the homepage "Read the CV" button, which hardcodes /cv and currently 404s.
 
-     DOWNLOAD BUTTONS: these currently open an email request, so nothing is broken on day one.
+     DOWNLOAD BUTTONS: these point at the contact form, so nothing is broken on day one.
      Once the three PDFs are uploaded to Squarespace, swap each href for the PDF URL
-     (the commented block just below the buttons has the ready-made replacements). -->
+     (the commented block just below the buttons has the ready-made replacements).
+     No email address appears on this page by design. Do not reintroduce mailto links. -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   .mcv{max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;color:#23211E;line-height:1.7;}
@@ -68,19 +72,19 @@
   <div class="mcv-eyebrow">Curriculum vitae</div>
   <h1>Matthew Ignash</h1>
   <div class="mcv-title">Instructional Leadership · Curriculum &amp; Assessment Coherence · IB Diploma Programme Work · People &amp; Operations · Responsible AI</div>
-  <div class="mcv-contact"><a href="mailto:matthew.ignash@gmail.com">matthew.ignash@gmail.com</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/matthew-ignash-ba72332b6/">LinkedIn</a> &nbsp;·&nbsp; matthewignash.com</div>
+  <div class="mcv-contact"><a href="/contact">Contact</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/matthew-ignash-ba72332b6/">LinkedIn</a> &nbsp;·&nbsp; matthewignash.com</div>
 
   <div class="mcv-dl">
-    <a class="mcv-btn solid" href="mailto:matthew.ignash@gmail.com?subject=CV%20request%20-%20Leadership%20%26%20Operations">Request CV · Leadership &amp; Operations</a>
-    <a class="mcv-btn line" href="mailto:matthew.ignash@gmail.com?subject=CV%20request%20-%20Curriculum%20%26%20Innovation">Request CV · Curriculum &amp; Innovation</a>
-    <a class="mcv-btn line" href="mailto:matthew.ignash@gmail.com?subject=CV%20request%20-%20IB%20Programme">Request CV · IB Programme</a>
+    <a class="mcv-btn solid" href="/contact">Request CV · Leadership &amp; Operations</a>
+    <a class="mcv-btn line" href="/contact">Request CV · Curriculum &amp; Innovation</a>
+    <a class="mcv-btn line" href="/contact">Request CV · IB Programme</a>
   </div>
   <!-- ONCE THE PDFs ARE UPLOADED, replace the three links above with these:
   <a class="mcv-btn solid" href="PDF_URL_LEADERSHIP">Download CV · Leadership &amp; Operations ↓</a>
   <a class="mcv-btn line" href="PDF_URL_CURRICULUM">Download CV · Curriculum &amp; Innovation ↓</a>
   <a class="mcv-btn line" href="PDF_URL_IB">Download CV · IB Programme ↓</a>
   -->
-  <div class="mcv-dlnote">Three emphases, one record. Choose the one that fits the role. The full document carries references.</div>
+  <div class="mcv-dlnote">Three emphases, one record. Name the one that fits the role when you get in touch and I will send it. The full document carries references.</div>
 
   <div class="mcv-sec">
     <h2>Profile</h2>
