@@ -71,7 +71,13 @@
     <p>Collaborations, speaking, a question about something on this site, or a conversation about school leadership. I read everything and reply to what I can.</p>
   </div>
 </div>
-<!-- ADD SQUARESPACE'S NATIVE FORM BLOCK IMMEDIATELY BELOW THIS CODE BLOCK.
+<!-- NO SITE FOOTER ON THIS PAGE, DELIBERATELY. Every other page ends with the
+     matthewignash.com footer and its four social links. This one cannot: the native
+     Form Block has to sit below this Code Block, so a footer in here would print
+     above the form and look like the page had ended. This page also already lists
+     all four of those links in the Direct and Elsewhere columns above.
+
+     ADD SQUARESPACE'S NATIVE FORM BLOCK IMMEDIATELY BELOW THIS CODE BLOCK.
      Suggested fields: Name, Email, Organisation (optional), Message.
      Set the form's storage in the Form Block's own settings. The address is
      deliberately absent from this page, so do not reintroduce it here. -->
@@ -101,6 +107,15 @@
     return [].slice.call(parsed.head.childNodes).concat([].slice.call(parsed.body.childNodes));
   }
 
+  // A page's own interactive code lives here, in the pasted block, rather than in the
+  // fetched markup, because scrubbed() strips script tags. It runs after the swap, and
+  // again on the fallback path, so the widgets work either way.
+  function enhance() {
+    try {
+
+    } catch (e) {}
+  }
+
   fetch("https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/Contact-Page.html", { cache: "no-cache" })
     .then(function (response) {
       if (!response.ok) throw new Error(response.status);
@@ -108,10 +123,12 @@
     })
     .then(function (markup) {
       var nodes = markup.trim() ? scrubbed(markup) : [];
-      if (!nodes.length) return;
-      mount.textContent = "";
-      nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      if (nodes.length) {
+        mount.textContent = "";
+        nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      }
+      enhance();
     })
-    .catch(function () {});
+    .catch(function () { enhance(); });
 }());
 </script>

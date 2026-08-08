@@ -199,7 +199,9 @@ One block replaced by one block, on `/building-ai-literacy-in-a-science-course`.
 cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/paste/Case-Earth-Env.html | pbcopy
 ```
 
-The link to the course site is currently **plain text rather than a link**, because that site is not deployed yet. Once it is on Vercel, tell me the URL and I will wire it up.
+The **"View the live course site"** button now works. It points at `hs-earth-env-site.vercel.app`, the deployed Earth and Env course site. It was plain text until that site went live.
+
+Your Grade 9 Biology and AP Chemistry sites are also live, but they are not on the site yet. They belong in the "course launchpads" Work row that is queued for the content pass, so they get written alongside the other new rows rather than bolted on now.
 
 ---
 

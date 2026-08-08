@@ -57,6 +57,33 @@
     </div>
   </div>
 </div>
+
+<!-- SITE FOOTER. Identical on every page; edit all of them together, or none.
+     Kept as markup rather than Squarespace's native footer social icons so the
+     styling stays ours. Squarespace has the same four accounts configured in its
+     own settings; leave those switched off or this appears twice. -->
+<div style="height:56px" aria-hidden="true"></div>
+<style>
+  .mif{max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;border-top:1px solid #23211E;padding:40px 0 12px;}
+  .mif-name{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;color:#23211E;}
+  .mif-tag{font-size:13.5px;color:#6B6760;margin-top:6px;max-width:26em;}
+  .mif-links{display:flex;gap:22px;flex-wrap:wrap;}
+  .mif-links a{font-size:13.5px;color:#6B6760;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:.15s;}
+  .mif-links a:hover{color:#C2552F;border-color:#C2552F;}
+  @media (max-width:620px){.mif{flex-direction:column;align-items:flex-start;}}
+</style>
+<div class="mif">
+  <div>
+    <div class="mif-name">matthewignash.com</div>
+    <div class="mif-tag">An instructional leader who builds systems and develops people, across four countries.</div>
+  </div>
+  <nav class="mif-links">
+    <a href="https://www.linkedin.com/in/matthew-ignash-ba72332b6/">LinkedIn</a>
+    <a href="https://www.incontact.pro/matthew-ignash">InContact</a>
+    <a href="https://substack.com/@matthewignash">Substack</a>
+    <a href="https://www.instagram.com/matthewignash.unified">Instagram</a>
+  </nav>
+</div>
 </div>
 <script>
 (function () {
@@ -83,6 +110,15 @@
     return [].slice.call(parsed.head.childNodes).concat([].slice.call(parsed.body.childNodes));
   }
 
+  // A page's own interactive code lives here, in the pasted block, rather than in the
+  // fetched markup, because scrubbed() strips script tags. It runs after the swap, and
+  // again on the fallback path, so the widgets work either way.
+  function enhance() {
+    try {
+
+    } catch (e) {}
+  }
+
   fetch("https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/About-Page.html", { cache: "no-cache" })
     .then(function (response) {
       if (!response.ok) throw new Error(response.status);
@@ -90,10 +126,12 @@
     })
     .then(function (markup) {
       var nodes = markup.trim() ? scrubbed(markup) : [];
-      if (!nodes.length) return;
-      mount.textContent = "";
-      nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      if (nodes.length) {
+        mount.textContent = "";
+        nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      }
+      enhance();
     })
-    .catch(function () {});
+    .catch(function () { enhance(); });
 }());
 </script>

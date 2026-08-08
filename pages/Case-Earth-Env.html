@@ -53,7 +53,7 @@
     <p class="tagline">A grade 11 and 12 Earth Science course that teaches AI literacy as a set of measurable competences inside real science work, not alongside it.</p>
     <div class="meta">American International School Chennai, 2026–27. My framework, and mine to carry forward.</div>
     <div class="acts">
-      View the live course site ↗
+      <a class="btn solid" href="https://hs-earth-env-site.vercel.app/">View the live course site ↗</a>
       <a class="btn line" href="/cv">Read the CV</a>
     </div>
   </div>
@@ -135,3 +135,35 @@
   });
 })();
 </script>
+
+<!-- SITE FOOTER. Identical on every page; edit all of them together, or none.
+     Kept as markup rather than Squarespace's native footer social icons so the
+     styling stays ours. Squarespace has the same four accounts configured in its
+     own settings; leave those switched off or this appears twice. -->
+<div style="height:56px" aria-hidden="true"></div>
+<style>
+  .mif{max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;border-top:1px solid #23211E;padding:40px 0 12px;}
+  .mif-name{font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;color:#23211E;}
+  .mif-tag{font-size:13.5px;color:#6B6760;margin-top:6px;max-width:26em;}
+  .mif-links{display:flex;gap:22px;flex-wrap:wrap;}
+  .mif-links a{font-size:13.5px;color:#6B6760;text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:.15s;}
+  .mif-links a:hover{color:#C2552F;border-color:#C2552F;}
+  @media (max-width:620px){.mif{flex-direction:column;align-items:flex-start;}}
+</style>
+<div class="mif">
+  <div>
+    <div class="mif-name">matthewignash.com</div>
+    <div class="mif-tag">An instructional leader who builds systems and develops people, across four countries.</div>
+  </div>
+  <nav class="mif-links">
+    <a href="https://www.linkedin.com/in/matthew-ignash-ba72332b6/">LinkedIn</a>
+    <a href="https://www.incontact.pro/matthew-ignash">InContact</a>
+    <a href="https://substack.com/@matthewignash">Substack</a>
+    <a href="https://www.instagram.com/matthewignash.unified">Instagram</a>
+  </nav>
+</div>
+<style>
+  /* This page sets its content to 880px, narrower than the shared footer. Override
+     must come after the footer style above or it loses on source order. */
+  .mif{max-width:880px;}
+</style>

@@ -235,6 +235,15 @@
     return [].slice.call(parsed.head.childNodes).concat([].slice.call(parsed.body.childNodes));
   }
 
+  // A page's own interactive code lives here, in the pasted block, rather than in the
+  // fetched markup, because scrubbed() strips script tags. It runs after the swap, and
+  // again on the fallback path, so the widgets work either way.
+  function enhance() {
+    try {
+
+    } catch (e) {}
+  }
+
   fetch("https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/Home-Page.html", { cache: "no-cache" })
     .then(function (response) {
       if (!response.ok) throw new Error(response.status);
@@ -242,10 +251,12 @@
     })
     .then(function (markup) {
       var nodes = markup.trim() ? scrubbed(markup) : [];
-      if (!nodes.length) return;
-      mount.textContent = "";
-      nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      if (nodes.length) {
+        mount.textContent = "";
+        nodes.forEach(function (node) { mount.appendChild(document.importNode(node, true)); });
+      }
+      enhance();
     })
-    .catch(function () {});
+    .catch(function () { enhance(); });
 }());
 </script>
