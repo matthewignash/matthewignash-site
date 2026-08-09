@@ -9,6 +9,11 @@
   .mtw *{box-sizing:border-box;}
   .mtw-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;}
   .mtw-lede{font-size:16px;color:var(--muted);max-width:44em;margin:10px 0 22px;}
+  /* Page-level note about the data. Deliberately NOT .mtw-note, which is the accent
+     panel used for in-app annotations inside the device frame. Neutral hairline
+     border so this reads as page furniture rather than a fourth screen note. */
+  .mtw-datanote{font-size:13px;color:var(--muted);border-left:2px solid var(--hair);
+                padding-left:12px;margin:0 0 20px;max-width:44em;}
 
   /* role switch */
   .mtw-roles{display:flex;gap:0;border:1px solid var(--ink);border-radius:2px;overflow:hidden;width:max-content;margin-bottom:6px;}
@@ -141,6 +146,7 @@
 <div class="mtw">
   <div class="mtw-eyebrow">Interactive wireframe</div>
   <p class="mtw-lede">The same system seen from both sides. A teacher requests the space and manages their own seating; the theatre manager approves, oversees the calendar, and tunes the rules without touching code. Switch roles to compare.</p>
+  <p class="mtw-datanote">A working rebuild of the live interface. Every booking shown here is invented: the deployed system carries real staff requests and event details, so none of its data appears on this page.</p>
 
   <input class="mtw-vin" type="radio" name="mtw-view" id="mtw-v1" checked>
   <input class="mtw-vin" type="radio" name="mtw-view" id="mtw-v2">
