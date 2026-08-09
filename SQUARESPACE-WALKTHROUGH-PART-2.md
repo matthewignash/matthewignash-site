@@ -80,7 +80,7 @@ cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/
 
 Page already exists at `/building-ai-literacy-in-a-science-course`. Replace its single Code Block. Background, **Save**.
 
-**One deliberate change:** the link to the course site pointed at a placeholder, because the site is not deployed. It is now plain text rather than a broken link. When the Vercel deploy happens we re-link it in `pages/` and push.
+**The course site link works.** It points at `https://hs-earth-env-site.vercel.app/`, the deployed Earth and Env course site. It sat as plain text for a while, because a link to a site that had not been deployed would have been a broken one. That is resolved.
 
 ## 8. Theatre case study, a brand new page
 
@@ -97,13 +97,13 @@ cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/
 5. **Edit** → add a Code Block → **Cmd+A** → paste → Language = HTML → Display Source unchecked.
 6. Background, **Save**.
 
-**Then check the wireframe works.** On the published page, not in the editor:
+**Then check the wireframe works.** This one you can test **in the editor**, unlike everything else in this guide. The wireframe is pure CSS, no JavaScript, so it does not depend on the GitHub fetch that never runs while you are editing. That makes it a useful early signal: **if it works while editing, it will work published.**
 
 - Click **Manager view**. The tab row underneath should change from three tabs to four.
 - Click through the tabs. The little URL in the grey bar should change with each one.
 - On the teacher **Seating** tab, you should see the coloured seat map with a partly filled orange block.
 
-If the role buttons do nothing, the JavaScript is not running. Check Display Source is unchecked and that you pasted the file from `paste/` rather than `pages/`.
+If the role buttons do nothing, it is not JavaScript, because there is none. Check Display Source is unchecked and that you pasted from `paste/` rather than `pages/`.
 
 ---
 
