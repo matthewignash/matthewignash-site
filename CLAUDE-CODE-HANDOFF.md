@@ -4,55 +4,57 @@ Paste everything below the line into Claude Code, run from the repo folder.
 
 ---
 
-New work is sitting in the working tree of `matthewignash-site`. Review it, commit, push, and verify. **Do not rewrite page content.**
+New work is in the working tree of `matthewignash-site`. Review it, commit, push, verify. **Do not rewrite page content.**
 
 `~/Documents/Claude/Projects/Publication Work/1-Projects/matthewignash-site`
 
 ## What is new
 
-**`pages/Case-Hall-Pass.html`** is a third case study, container `mi-case-hallpass`, slug **`replacing-the-paper-hall-pass`**. Title: "From a paper sheet to a system the IT department owns."
+**`pages/Case-IA-Moderation.html`** is a fourth case study, container `mi-case-ia`, slug **`a-shared-standard-for-science-ias`**. Title: "One rubric, both sides of the desk."
 
-It embeds an interactive wireframe of the digital hall pass, `.mhp-` prefix, showing the classroom tablet and the admin dashboard. **CSS-only, no JavaScript**, using hidden radio inputs and `:checked ~` selectors, the same pattern as the theatre case study. Click-tested: correct screen, tab set and URL in all four states, zero JS errors.
+It covers the IB Diploma science internal assessment programme as one arc: four workshops across five meetings that taught the standard to students, then department-wide moderation that applied it, then the measured outcome. It embeds an interactive wireframe of the moderation tool, `.mia-` prefix, with a reviewer role and a moderator role, four screens. **CSS-only, no JavaScript.** Click-tested, zero JS errors.
 
 Also changed:
 
-- `build.py` extended from eight pages to nine.
-- `pages/Work-Page.html`: the **Digital Hall Pass** row is now an anchor to the new slug with its `↗` arrow restored. Three rows link out now: Earth and Env, Theatre Booking Manager, Digital Hall Pass. The other nine stay plain with no arrow, deliberately.
-- `pages/Case-Theatre-Booking.html`: removed a duplicated intro. The case section introduced the wireframe and then the wireframe introduced itself again. Content only, no structural change.
-- `SQUARESPACE-WALKTHROUGH-PART-2.md`: new section 10 covering the new page.
-- `drafts/Hallpass-Wireframe.html`: the standalone wireframe, kept for reference.
+- `build.py` extended to ten pages.
+- `pages/Work-Page.html`: the **IA Moderation Tool** row is now an anchor to the new slug with its arrow restored. Four rows link out now: Earth and Env, IA Moderation Tool, Theatre Booking Manager, Digital Hall Pass. The other eight stay plain.
+- `SQUARESPACE-WALKTHROUGH-PART-2.md`: new section 11.
+- `drafts/Moderation-Wireframe.html`: standalone wireframe for reference.
 
-## Context so you do not "correct" deliberate choices
+## Facts on this page were verified with Matthew directly. Do not adjust them.
 
-**Attribution on this page is load-bearing and was verified with Matthew directly.** Do not soften it, do not strengthen it:
+- **Four workshop decks, five meetings.** The fifth meeting has no deck: students read a complete IA as a group, marked it against the rubric themselves, discussed which strands were easy or hard to evidence, and only then saw the real marks. If you see "four sessions" anywhere, that is wrong; it is four workshops across five meetings.
+- **Middle school teachers genuinely read diploma IAs** as readers whose marks counted, not as observers. The page says so in a callout. That is accurate and deliberate.
+- **Two to three readers per IA**, cross-subject and cross-division, blind to each other until both submit.
+- **The AI pass is named openly.** The tool runs an AI pass over each IA producing per-strand scores. The page shows it as a third column and states plainly that it never sets a mark and exists to make disagreement visible; the agreed column is always human. Matthew chose to disclose this rather than obscure it. **Do not remove the column and do not soften the disclosure.**
+- **Evaluation drew the most reader disagreement**, research design almost none, and that finding fed the next workshop sequence. This is the page's argument. Leave it.
 
-- He built a **demonstrator**, in Apps Script and HTML. It was **never run with students**. The page says so explicitly, in a callout. That sentence stays.
-- The demonstrator had a digital teacher-approval step. It was cut because it forced teachers into their email mid-lesson to formalise a decision they had already made out loud.
-- **IT owns version two** and is actively building it on the RFID student ID cards the school deployed this year. He is still in the conversation with the Assistant Principal but is not writing the code.
-- The status pill reads **"In development"**, not "In use". The theatre case study reads "In use". That difference is intentional and correct.
+## Privacy, and check this before pushing
 
-**Privacy.** The source mockups and the prototype spreadsheet contain real email addresses, a real student information system export, and named staff. None of it is on this page. Verified zero matches for `aischennai`, `Justyna`, `Chris`, and any six-digit student ID. Illustrative rows use "Student A" through "Student G" with no ID numbers, and no staff are named. **Keep it that way.**
+The source spreadsheet `Science IA Moderation V2.xlsx` contains **real student first names, staff email addresses, Google Drive file IDs and real IA titles**. The source mockups and workshop decks contain more of the same. None of it is on this page.
+
+Verify zero matches in `pages/Case-IA-Moderation.html` for: `aischennai`, `Airi`, `Archisha`, `Dheeban`, `imatthew`, `msagaya`, `fadam`, `prebecca`, and the pattern `\b1[A-Za-z0-9_-]{25,}` for Drive IDs. Illustrative rows use "Candidate 01" style with invented investigation titles. **If anything matches, stop and report rather than pushing.**
 
 ## Tasks
 
 1. Review `git diff`.
-2. Run `python3 build.py`. Confirm `paste/` regenerates all **nine** pages.
-3. Verify no scripts: `grep -c '<script' pages/*.html` should be 0 everywhere. The CV page reports 1, which is a false positive from the string `<script` inside a CSS comment. Confirm that is what it is and move on.
-4. Verify privacy on the new page: zero matches for `aischennai`, `Justyna`, `Chris`, `csara`, and `\b1\d{5}\b`.
-5. Verify the Work page has exactly three `<a class="mwk-row"` anchors and three `mwk-arrow` spans.
-6. Commit and push. Suggested message: `Add the hall pass case study and link it from Work`.
-7. **Curl all nine raw URLs** and report HTTP status for each:
+2. `python3 build.py`. Confirm `paste/` regenerates all **ten** pages.
+3. `grep -c '<script' pages/*.html` must be 0 everywhere. The CV page reports 1, a false positive from the string inside a CSS comment.
+4. Run the privacy checks above.
+5. Confirm `pages/Work-Page.html` has exactly four `<a class="mwk-row"` anchors and four `mwk-arrow` spans.
+6. Commit and push. Suggested message: `Add the IA moderation case study and link it from Work`.
+7. **Curl all ten raw URLs** and report status for each:
    `https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/<FILENAME>`
-8. Report the nine statuses plus anything from steps 3 to 5.
+8. Report the ten statuses plus anything from steps 3 to 5.
+
+## One duplication to be aware of, but leave alone
+
+The IA outcome table now appears on two pages: `pages/CV-Page.html` and `pages/Case-IA-Moderation.html`, with the same figures and the same caption. That is intentional. Do not try to factor it out; the loader has no include mechanism and a shared fragment would break the one-block-per-page model. Just know that revising the figures means editing both.
 
 ## Do not
 
 - Do not add `<script>` to any page.
-- Do not change the attribution wording, the "never run with students" callout, or the "In development" status.
-- Do not name the Assistant Principal, the IT staff member, or any student.
+- Do not remove or reword the AI pass disclosure, the middle school callout, or the five-meetings detail.
+- Do not name any student, candidate, or member of staff.
 - Do not touch `Job-Search-2027-2028/Squarespace-Blocks/`, which is retired.
 - Leave "15+ in-house tools built for staff and students" in the homepage stat strip. Content pass, not this one.
-
-## Still queued for the content pass
-
-Homepage stat strip wording; swapping Parallel Design Labs for AI Coding for Educators in the homepage featured three; six new Work rows plus status upgrades; About page additions. Reasoning lives in `Job-Search-2027-2028/Squarespace-Blocks/Pages/README-PASTE-AND-PUBLISH.md`.

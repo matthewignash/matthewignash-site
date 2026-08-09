@@ -19,6 +19,7 @@ CONTAINERS = {
     "Case-Earth-Env.html": "mi-case-earth-env",
     "Case-Theatre-Booking.html": "mi-case-theatre",
     "Case-Hall-Pass.html": "mi-case-hallpass",
+    "Case-IA-Moderation.html": "mi-case-ia",
 }
 
 LOADER = """<script>

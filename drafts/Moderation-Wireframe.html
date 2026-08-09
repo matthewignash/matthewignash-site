@@ -1,0 +1,233 @@
+<!-- IA MODERATION: interactive wireframe. Scoped to .mia-, no JavaScript.
+     Illustrative data only. No student names, candidate numbers, staff names, emails or IA titles from the real session. -->
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .mia{--paper:#FAF7F2;--paper2:#F4EFE7;--ink:#23211E;--muted:#6B6760;--hair:#E2DBCF;--hair2:#D8CFC0;
+       --accent:#C2552F;--accentsoft:#F4E7DF;--teal:#2F6F5E;--tealsoft:#E4EFEA;
+       max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;color:var(--ink);line-height:1.6;}
+  .mia *{box-sizing:border-box;}
+  .mia-vin{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;}
+  .mia-roles{display:flex;border:1px solid var(--ink);border-radius:2px;overflow:hidden;width:max-content;margin-bottom:6px;}
+  .mia-role{display:inline-block;font-size:13.5px;font-weight:500;padding:10px 22px;cursor:pointer;}
+  .mia-role + .mia-role{border-left:1px solid var(--ink);}
+  .mia-rolenote{font-size:13px;color:var(--muted);margin:8px 0 18px;min-height:1.4em;}
+  .mia-rolenote span{display:none;}
+  .mia-tabs{display:flex;gap:22px;flex-wrap:wrap;border-bottom:1px solid var(--hair);}
+  .mia-tab{display:inline-block;font-size:13px;padding:0 0 9px;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);}
+  .mia-role:focus-visible,.mia-tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .mia-frame{border:1px solid var(--hair2);border-top:0;background:#fff;}
+  .mia-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--paper2);border-bottom:1px solid var(--hair);}
+  .mia-dot{width:9px;height:9px;border-radius:50%;background:var(--hair2);}
+  .mia-url{font-size:11.5px;color:var(--muted);margin-left:6px;}
+  .mia-url span{display:none;}
+  .mia-body{padding:22px 24px 26px;}
+  .mia-screen{display:none;}
+  .mia-apphead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--hair);padding-bottom:12px;margin-bottom:16px;}
+  .mia-apphead h3{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:500;margin:0;}
+  .mia-who{font-size:12px;color:var(--muted);}
+  .mia-note{font-size:12.5px;color:var(--muted);background:var(--paper2);padding:9px 12px;margin:0 0 14px;}
+  .mia-tbl{width:100%;border-collapse:collapse;font-size:13.5px;}
+  .mia-tbl th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--ink);padding:0 8px 7px 0;font-weight:600;}
+  .mia-tbl td{padding:11px 8px 11px 0;border-bottom:1px solid var(--hair);vertical-align:top;}
+  .mia-tbl td b{font-weight:500;}
+  .mia-tbl td span{display:block;font-size:11.5px;color:var(--accent);}
+  .mia-tbl .r{text-align:right;} .mia-tbl .c{text-align:center;font-variant-numeric:tabular-nums;}
+  .mia-pill{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+  .mia-pill.done{background:var(--tealsoft);color:var(--teal);}
+  .mia-pill.go{background:#FBF0D9;color:#8A6A18;}
+  .mia-pill.todo{background:#F0EDE8;color:#8A857D;}
+  .mia-two{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .mia-doc{border:1px solid var(--hair);background:var(--paper2);}
+  .mia-docbar{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--hair);}
+  .mia-lines{padding:16px 14px;}
+  .mia-lines i{display:block;height:8px;background:#DED8CE;border-radius:1px;margin-bottom:9px;}
+  .mia-lines i.short{width:62%;}
+  .mia-lines i.hl{height:auto;background:#FBF0D9;border-left:2px solid #C99A2E;color:#7A5D14;font-size:11.5px;font-style:normal;padding:5px 8px;}
+  .mia-annot{border-top:1px solid var(--hair);padding:12px 14px;background:#fff;}
+  .mia-annot b{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);display:block;}
+  .mia-annot span{font-size:12.5px;color:var(--muted);}
+  .mia-crit{border:1px solid var(--hair);margin-bottom:8px;}
+  .mia-ch{display:flex;justify-content:space-between;align-items:baseline;padding:11px 13px;background:var(--paper2);}
+  .mia-ch b{font-family:'Fraunces',Georgia,serif;font-size:16px;font-weight:500;}
+  .mia-ch span{font-size:12.5px;color:var(--muted);}
+  .mia-crit.open .mia-ch{background:var(--tealsoft);}
+  .mia-strand{display:flex;align-items:center;gap:6px;padding:8px 13px;border-top:1px solid var(--hair);font-size:12.5px;}
+  .mia-strand span{flex:1;color:var(--muted);}
+  .mia-strand em{font-style:normal;font-size:11px;border:1px solid var(--hair2);border-radius:2px;padding:3px 7px;color:var(--muted);}
+  .mia-strand em.on{background:var(--teal);border-color:var(--teal);color:#fff;font-weight:600;}
+  .mia-cmt{font-size:12.5px;color:var(--ink);padding:10px 13px;border-top:1px solid var(--hair);background:#fff;}
+  .mia-cta{background:var(--ink);color:var(--paper);text-align:center;padding:12px;font-size:14px;font-weight:500;border-radius:2px;margin-top:10px;}
+  .mia-cmp td{font-size:14px;}
+  .mia-cmp .ai{color:var(--muted);}
+  .mia-cmp tr.flag{background:#FBEFEA;}
+  .mia-cmp tr.tot td{border-bottom:0;border-top:1px solid var(--ink);font-size:15px;}
+  .mia-agree{border-left:2px solid var(--teal);background:var(--tealsoft);padding:14px 16px;margin-top:16px;}
+  .mia-agree b{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:5px;}
+  .mia-agree p{margin:0;font-size:14px;color:#26473D;}
+  .mia-kpis{display:flex;flex-wrap:wrap;border:1px solid var(--hair);background:var(--paper2);margin-bottom:18px;}
+  .mia-kpi{flex:1 1 130px;padding:14px 18px;border-right:1px solid var(--hair);}
+  .mia-kpi:last-child{border-right:0;}
+  .mia-kpi b{display:block;font-family:'Fraunces',Georgia,serif;font-size:26px;font-weight:500;}
+  .mia-kpi span{font-size:11.5px;color:var(--muted);}
+  .mia-kpi.big b{font-size:34px;color:var(--accent);}
+  .mia-h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 12px;}
+  .mia-bars div{display:flex;align-items:center;gap:10px;font-size:12.5px;padding:4px 0;}
+  .mia-bars span{width:96px;color:var(--muted);}
+  .mia-bars i{height:11px;background:#9FC2B5;border-radius:1px;min-width:2px;}
+  .mia-bars i.warn{background:#D99A7A;}
+  .mia-bars small{color:var(--muted);font-variant-numeric:tabular-nums;}
+  .mia-small{font-size:13.5px;color:var(--muted);margin:0 0 12px;}
+  .mia-exp{display:flex;gap:8px;margin-top:14px;}
+  .mia-btn{font-size:12px;border:1px solid var(--hair2);padding:6px 11px;border-radius:2px;background:#fff;}
+  .mia-cap{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:16px;max-width:44em;}
+  @media (max-width:820px){ .mia-two{grid-template-columns:1fr;} .mia-kpi{flex:1 1 45%;} }
+  #mia-i1:checked ~ .mia-frame .mia-sc-i1{display:block;}
+  #mia-i1:checked ~ .mia-frame .mia-bar .mia-u-i1{display:inline;}
+  #mia-i1:checked ~ .mia-tabs label[for="mia-i1"]{color:#23211E;border-bottom-color:#C2552F;font-weight:500;}
+  #mia-i2:checked ~ .mia-frame .mia-sc-i2{display:block;}
+  #mia-i2:checked ~ .mia-frame .mia-bar .mia-u-i2{display:inline;}
+  #mia-i2:checked ~ .mia-tabs label[for="mia-i2"]{color:#23211E;border-bottom-color:#C2552F;font-weight:500;}
+  #mia-i3:checked ~ .mia-frame .mia-sc-i3{display:block;}
+  #mia-i3:checked ~ .mia-frame .mia-bar .mia-u-i3{display:inline;}
+  #mia-i3:checked ~ .mia-tabs label[for="mia-i3"]{color:#23211E;border-bottom-color:#C2552F;font-weight:500;}
+  #mia-i4:checked ~ .mia-frame .mia-sc-i4{display:block;}
+  #mia-i4:checked ~ .mia-frame .mia-bar .mia-u-i4{display:inline;}
+  #mia-i4:checked ~ .mia-tabs label[for="mia-i4"]{color:#23211E;border-bottom-color:#C2552F;font-weight:500;}
+  #mia-i1:checked ~ .mia-tabs .mia-t-m,#mia-i2:checked ~ .mia-tabs .mia-t-m{display:none;}
+  #mia-i3:checked ~ .mia-tabs .mia-t-r,#mia-i4:checked ~ .mia-tabs .mia-t-r{display:none;}
+  #mia-i1:checked ~ .mia-roles .mia-r-r,#mia-i2:checked ~ .mia-roles .mia-r-r{background:#23211E;color:#FAF7F2;}
+  #mia-i3:checked ~ .mia-roles .mia-r-m,#mia-i4:checked ~ .mia-roles .mia-r-m{background:#23211E;color:#FAF7F2;}
+  #mia-i1:checked ~ .mia-rolenote .mia-n-r,#mia-i2:checked ~ .mia-rolenote .mia-n-r{display:block;}
+  #mia-i3:checked ~ .mia-rolenote .mia-n-m,#mia-i4:checked ~ .mia-rolenote .mia-n-m{display:block;}
+</style>
+<div class="mia">
+  <input class="mia-vin" type="radio" name="mia-view" id="mia-i1" checked>
+  <input class="mia-vin" type="radio" name="mia-view" id="mia-i2">
+  <input class="mia-vin" type="radio" name="mia-view" id="mia-i3">
+  <input class="mia-vin" type="radio" name="mia-view" id="mia-i4">
+
+  <div class="mia-roles">
+    <label class="mia-role mia-r-r" for="mia-i1" tabindex="0">As a reviewer</label>
+    <label class="mia-role mia-r-m" for="mia-i3" tabindex="0">As the moderator</label>
+  </div>
+  <div class="mia-rolenote">
+    <span class="mia-n-r">Any teacher in the department. Sees only the IAs assigned to them, and cannot see the other reviewer's marks.</span>
+    <span class="mia-n-m">Sees every reviewer's marks side by side, agrees the final score, and tracks the department.</span>
+  </div>
+
+  <div class="mia-tabs">
+    <label class="mia-tab mia-t-r" for="mia-i1" tabindex="0">My queue</label>
+    <label class="mia-tab mia-t-r" for="mia-i2" tabindex="0">Score an IA</label>
+    <label class="mia-tab mia-t-m" for="mia-i3" tabindex="0">Compare and agree</label>
+    <label class="mia-tab mia-t-m" for="mia-i4" tabindex="0">Department view</label>
+  </div>
+
+  <div class="mia-frame">
+    <div class="mia-bar"><span class="mia-dot"></span><span class="mia-dot"></span><span class="mia-dot"></span><span class="mia-url"><span class="mia-u-i1">moderation / queue</span><span class="mia-u-i2">moderation / score</span><span class="mia-u-i3">moderation / compare</span><span class="mia-u-i4">moderation / department</span></span></div>
+    <div class="mia-body">
+
+      <!-- ===== MY QUEUE ===== -->
+      <section class="mia-screen mia-sc-i1">
+        <div class="mia-apphead"><h3>My queue</h3><span class="mia-who">Session 2026 · reviewer</span></div>
+        <p class="mia-note">You are one of two or three readers on each of these. You will not see anyone else's marks until moderation.</p>
+        <table class="mia-tbl">
+          <thead><tr><th>Candidate</th><th>Subject</th><th>Investigation</th><th class="r">Status</th></tr></thead>
+          <tbody>
+            <tr><td><b>Candidate 01</b></td><td>Chemistry HL</td><td>Rate of reaction and catalyst surface area</td><td class="r"><span class="mia-pill done">Submitted</span></td></tr>
+            <tr><td><b>Candidate 04</b></td><td>Chemistry SL</td><td>Enthalpy change of neutralisation</td><td class="r"><span class="mia-pill done">Submitted</span></td></tr>
+            <tr><td><b>Candidate 09</b></td><td>Biology SL</td><td>Enzyme activity across temperature</td><td class="r"><span class="mia-pill go">In progress</span></td></tr>
+            <tr><td><b>Candidate 12</b></td><td>Physics HL</td><td>Spring constant from oscillation period</td><td class="r"><span class="mia-pill todo">Not started</span></td></tr>
+            <tr><td><b>Candidate 17</b></td><td>Physics SL</td><td>Focal length and lens curvature</td><td class="r"><span class="mia-pill todo">Not started</span></td></tr>
+          </tbody>
+        </table>
+        <p class="mia-cap">Assignments deliberately cross subject and division. A biology teacher reads a physics IA, and a middle school teacher reads a diploma one. The point is a shared standard, not subject expertise.</p>
+      </section>
+
+      <!-- ===== SCORE AN IA ===== -->
+      <section class="mia-screen mia-sc-i2">
+        <div class="mia-apphead"><h3>Candidate 09 · Biology SL</h3><span class="mia-who">Reader 2 of 2 · not submitted</span></div>
+        <div class="mia-two">
+          <div class="mia-doc">
+            <div class="mia-docbar">Investigation, page 4 of 11</div>
+            <div class="mia-lines">
+              <i></i><i></i><i class="short"></i>
+              <i class="hl">Selected text, with a reader comment attached</i>
+              <i></i><i class="short"></i><i></i><i></i><i class="short"></i>
+            </div>
+            <div class="mia-annot"><b>Data analysis · uncertainty</b><span>Error bars are shown but not identified. Standard deviation or standard error is not stated in the caption.</span></div>
+          </div>
+          <div>
+            <div class="mia-crit open">
+              <div class="mia-ch"><b>Research design</b><span>4 / 6</span></div>
+              <div class="mia-strand"><span>RQ and context</span><em class="on">5-6</em><em>3-4</em><em>1-2</em></div>
+              <div class="mia-strand"><span>Methodology considerations</span><em>5-6</em><em class="on">3-4</em><em>1-2</em></div>
+              <div class="mia-strand"><span>Methodology detail</span><em>5-6</em><em class="on">3-4</em><em>1-2</em></div>
+              <div class="mia-cmt">Range is well chosen and justified. Control of pH is asserted rather than described.</div>
+            </div>
+            <div class="mia-crit"><div class="mia-ch"><b>Data analysis</b><span>3 / 6</span></div></div>
+            <div class="mia-crit"><div class="mia-ch"><b>Conclusion</b><span>4 / 6</span></div></div>
+            <div class="mia-crit"><div class="mia-ch"><b>Evaluation</b><span>not yet marked</span></div></div>
+            <div class="mia-cta">Submit my marks</div>
+          </div>
+        </div>
+        <p class="mia-cap">Marks are made against strands, not against a global impression, and every band carries a comment. The comment is the part that survives into the moderation conversation.</p>
+      </section>
+
+      <!-- ===== COMPARE ===== -->
+      <section class="mia-screen mia-sc-i3">
+        <div class="mia-apphead"><h3>Candidate 09 · Biology SL</h3><span class="mia-who">Both readers submitted · ready to agree</span></div>
+        <table class="mia-tbl mia-cmp">
+          <thead><tr><th>Criterion</th><th class="c">Reader 1</th><th class="c">Reader 2</th><th class="c ai">First pass</th><th class="c">Agreed</th></tr></thead>
+          <tbody>
+            <tr><td><b>Research design</b></td><td class="c">4</td><td class="c">4</td><td class="c ai">4</td><td class="c"><b>4</b></td></tr>
+            <tr class="flag"><td><b>Data analysis</b><span>readers differ by 2</span></td><td class="c">5</td><td class="c">3</td><td class="c ai">4</td><td class="c"><b>4</b></td></tr>
+            <tr><td><b>Conclusion</b></td><td class="c">4</td><td class="c">4</td><td class="c ai">3</td><td class="c"><b>4</b></td></tr>
+            <tr><td><b>Evaluation</b></td><td class="c">3</td><td class="c">2</td><td class="c ai">3</td><td class="c"><b>3</b></td></tr>
+            <tr class="tot"><td><b>Total</b></td><td class="c">16</td><td class="c">13</td><td class="c ai">14</td><td class="c"><b>15 / 24</b></td></tr>
+          </tbody>
+        </table>
+        <div class="mia-agree">
+          <b>Moderation note</b>
+          <p>Reader 1 credited the calibration work under data analysis; Reader 2 read it as method. Agreed at 4: the processing is sound but the error bars are unlabelled, which caps the strand. Both readers updated their own notes after the conversation.</p>
+        </div>
+        <p class="mia-cap">The disagreement is the useful part. Two readers two bands apart on the same strand is a signal that the strand is being read differently across the department, and that is a training conversation rather than a marking one.</p>
+      </section>
+
+      <!-- ===== DEPARTMENT ===== -->
+      <section class="mia-screen mia-sc-i4">
+        <div class="mia-apphead"><h3>Department view</h3><span class="mia-who">Session 2026</span></div>
+        <div class="mia-kpis">
+          <div class="mia-kpi big"><b>38</b><span>IAs in the session</span></div>
+          <div class="mia-kpi"><b>2.3</b><span>readers per IA, average</span></div>
+          <div class="mia-kpi"><b>11</b><span>flagged for discussion</span></div>
+          <div class="mia-kpi"><b>34</b><span>agreed and locked</span></div>
+        </div>
+        <div class="mia-two">
+          <div>
+            <div class="mia-h4">Progress by subject</div>
+            <div class="mia-bars">
+              <div><span>Biology</span><i style="width:100%"></i><small>14 / 14</small></div>
+              <div><span>Chemistry</span><i style="width:86%"></i><small>12 / 14</small></div>
+              <div><span>Physics</span><i style="width:80%"></i><small>8 / 10</small></div>
+            </div>
+            <div class="mia-h4" style="margin-top:22px">Where readers disagreed most</div>
+            <div class="mia-bars">
+              <div><span>Evaluation</span><i class="warn" style="width:100%"></i><small>6</small></div>
+              <div><span>Data analysis</span><i class="warn" style="width:67%"></i><small>4</small></div>
+              <div><span>Conclusion</span><i class="warn" style="width:17%"></i><small>1</small></div>
+              <div><span>Research design</span><i class="warn" style="width:0%"></i><small>0</small></div>
+            </div>
+          </div>
+          <div>
+            <div class="mia-h4">What that told us</div>
+            <p class="mia-small">Evaluation drew more disagreement than the other three criteria combined. That is not a marking problem, it is a teaching one: the strand asks students to size the effect of a limitation, and readers were split on how much sizing was enough.</p>
+            <p class="mia-small">It became the first item in the following year's workshop sequence, and the rubric language for that strand was rewritten in the student-facing materials.</p>
+            <div class="mia-exp"><span class="mia-btn">Export for IBIS</span><span class="mia-btn">Export CSV</span></div>
+          </div>
+        </div>
+        <p class="mia-cap">The moderation data is a curriculum instrument as much as an assessment one. Where the adults disagree is where the teaching is least settled.</p>
+      </section>
+
+    </div>
+  </div>
+</div>

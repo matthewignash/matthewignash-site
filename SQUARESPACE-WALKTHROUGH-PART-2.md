@@ -167,3 +167,28 @@ cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/
 ### A note on this page's honesty
 
 This case study says plainly that the prototype was a demonstrator and was never run with students, and that IT owns version two. That is not modesty, it is the thing that makes the rest of the page credible. If a reference call ever comes, everything on this page will match what the Assistant Principal and IT would say about it.
+
+---
+
+## 11. IA moderation case study, a third new page
+
+```
+cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/paste/Case-IA-Moderation.html | pbcopy
+```
+
+1. **Pages** panel → **+** → **Blank Page**.
+2. Name it **One rubric, both sides of the desk**.
+3. Drag it into **Not Linked**, with the other case studies.
+4. **Set the URL slug to `a-shared-standard-for-science-ias`.** Must match exactly; the Work page links to it.
+5. **Edit** → Code Block → **Cmd+A** → paste → **Language = HTML** → **Display Source unchecked**.
+6. Background to match `/work`. **Save**.
+
+**Test:** click **As the moderator**. Tabs should change from "My queue / Score an IA" to "Compare and agree / Department view". On **Compare and agree** the Data analysis row should be highlighted with "readers differ by 2".
+
+**Four Work rows now link out:** Earth and Env, IA Moderation Tool, Theatre Booking Manager, Digital Hall Pass. The other eight are plain, deliberately.
+
+### Two things on this page worth knowing before you publish
+
+**It names the AI pass.** The comparison table has an "AI pass" column alongside the two human readers, and the caption states that it never sets a mark and exists only to make disagreement visible. You chose to show this rather than hide it. It is the right call, but expect it to come up in an IB-facing interview, so have the sentence ready: the agreed column is always human, always from the conversation.
+
+**It carries the IA outcome table**, in the same format and with the same caption as the CV page. If you ever revise those figures, they now live in two places: `pages/CV-Page.html` and `pages/Case-IA-Moderation.html`.
