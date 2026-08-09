@@ -4,73 +4,66 @@ Paste everything below the line into Claude Code, run from the repo folder.
 
 ---
 
-You are picking up work on `matthewignash-site`, the repo that backs matthewignash.com. Repo path:
+You are doing the git work for `matthewignash-site`, the repo backing matthewignash.com.
 
 `~/Documents/Claude/Projects/Publication Work/1-Projects/matthewignash-site`
 
-## What already happened (do not redo)
+**Your job is narrow: verify, commit, push, and prove the fetch targets resolve. Do not write or edit page content.** All eight pages and both walkthrough documents are already written. A separate content pass is queued, and mixing content edits into this migration would make a bad render impossible to diagnose.
 
-Three pages were already built and pushed: `Contact-Page.html`, `CV-Page.html`, `Writing-Media-Page.html`. Those are live in the repo and are being pasted into Squarespace by hand, one time each.
+## State of the repo right now
 
-In this session four more page fragments were written into `pages/` and `build.py` was extended from three entries to seven. `python3 build.py` has already been run, so `paste/` is current. Nothing has been committed or pushed yet.
+Already pushed in an earlier commit: `Contact-Page.html`, `CV-Page.html`, `Writing-Media-Page.html`.
 
-New files in `pages/`:
+Written but **not yet committed**:
 
-- `Home-Page.html` (container `mi-home`)
-- `About-Page.html` (container `mi-about`)
-- `Work-Page.html` (container `mi-work`)
-- `Case-Earth-Env.html` (container `mi-case-earth-env`)
+- `pages/Home-Page.html` (container `mi-home`)
+- `pages/About-Page.html` (`mi-about`)
+- `pages/Work-Page.html` (`mi-work`)
+- `pages/Case-Earth-Env.html` (`mi-case-earth-env`)
+- `pages/Case-Theatre-Booking.html` (`mi-case-theatre`)
+- `build.py`, extended from three entries to eight
+- `SQUARESPACE-WALKTHROUGH.md` and `SQUARESPACE-WALKTHROUGH-PART-2.md`
+- `drafts/Theatre-Wireframe.html`, the standalone wireframe kept for reference
 
-## How these four were produced, so you know what to trust
+`python3 build.py` has already been run, so `paste/` holds all eight.
 
-They are **not** copies of the standalone files in `Job-Search-2027-2028/Matthew Ignash Website/site/`. Those use global CSS selectors (`*`, `html`, `body`, `a`) and would restyle the whole Squarespace page if pasted. They were rebuilt instead:
+## Context you need so you do not "fix" deliberate choices
 
-- **Home** = the eight `Squarespace-Blocks/01-Hero.html` … `08-Footer.html` blocks concatenated, with `56px` spacer divs between them. The blocks assumed Squarespace section padding; concatenated they collided, and the spacers replace that padding.
-- **Work** = the five `Squarespace-Blocks/Work/*.html` blocks concatenated.
-- **Case-Earth-Env** = `Squarespace-Blocks/Case-Earth-Env-AI-Literacy.html`.
-- **About** = written fresh with a new `.mab-` prefix. No About block ever existed; the live page was assembled from loose fragments. Content was taken verbatim from `site/about.html`, which matches the live page.
+- The standalone files in `Job-Search-2027-2028/Matthew Ignash Website/site/` use global CSS selectors (`*`, `html`, `body`, `a`) and would restyle the whole Squarespace page. They are **not** the source. Do not copy from them.
+- **Home** is the eight `Squarespace-Blocks/01-Hero.html` … `08-Footer.html` blocks concatenated with `56px` spacer divs. The blocks relied on Squarespace section padding; concatenated they collided. The spacers replace it.
+- **Work** is the five `Squarespace-Blocks/Work/*.html` blocks concatenated.
+- **About** was written fresh with a `.mab-` prefix. No About block ever existed.
+- **Eleven Work rows** were converted from `<a href="#">` to `<div>` with the `↗` arrow removed, because they linked nowhere and clicking one jumped to the top of the page. Exactly **two** rows are anchors: Earth and Env, and Theatre Booking Manager. **Do not restore the dead anchors.**
+- The **theatre case study** is a new page at slug `booking-a-780-seat-theatre`, and the Work page links to it. That slug must not change without changing the Work page link too.
+- The case study embeds an interactive wireframe with its own `<script>`. It is plain ES5-safe JS with no dependencies. Leave it alone.
+- On the Earth and Env case study, a link to the course site pointed at `VERCEL_URL_HERE`. The anchor was unwrapped to plain text because the site is not deployed. That is intentional.
 
-Placeholders that were resolved, since the block files were pre-substitution templates:
+## Tasks
 
-- 10 `href="#"` on Home, 15 on Work, 2 on the case study, all mapped to real targets (`/cv`, `/work`, `/writing`, `/contact`, `/building-ai-literacy-in-a-science-course`, the Substack URL).
-- `IMAGE_URL_HERE` replaced with the live Squarespace CDN headshot URL pulled off the published homepage.
-- `VERCEL_URL_HERE` on the case study: the course site is not deployed, so the anchor was unwrapped and the text left in place. Re-link it when the Vercel deploy happens.
-- Stale "12+ essays" on the homepage corrected to "63 posts".
-- Eleven Work rows that linked nowhere but displayed a `↗` arrow were converted from `<a href="#">` to `<div>` with the arrow removed. Only Earth and Env still links, and it keeps its arrow. This was an explicit decision, not a bug. Do not restore the dead anchors.
+1. **Verify before committing.** Confirm `paste/` contains eight files and is newer than `pages/`. If not, run `python3 build.py`.
+2. **Search `pages/` and `paste/` for leftovers** and report anything found: `href="#"`, `IMAGE_URL_HERE`, `VERCEL_URL_HERE`, `ESSAY_COUNT`, `TOOL_COUNT`, `12+`.
+3. **Privacy check on the theatre case study.** `pages/Case-Theatre-Booking.html` must contain zero matches for `aischennai`, `csara`, or `Sara`. The source documents this was built from are full of real staff email addresses. If any appear, stop and report rather than pushing.
+4. **Commit and push** to `main`. Suggested message: `Add Home, About, Work, and two case study pages`.
+5. **Prove the fetch targets resolve.** After pushing, curl all eight raw URLs and confirm HTTP 200:
 
-## Your tasks
-
-1. **Sanity check before committing.** Confirm `paste/` is newer than `pages/` and contains seven files. If not, run `python3 build.py`.
-2. **Confirm no placeholders survive** anywhere in `pages/` or `paste/`: search for `href="#"`, `IMAGE_URL_HERE`, `VERCEL_URL_HERE`, `ESSAY_COUNT`, `TOOL_COUNT`, `12+`.
-3. **Commit and push** to `main`. Message along the lines of `Add Home, About, Work and case study pages`.
-4. **Verify the fetch targets resolve.** After pushing, curl each of the seven raw URLs and confirm HTTP 200:
    `https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/<FILENAME>`
-   Report any that fail. This matters because a 404 means that page silently falls back forever.
-5. **Extend `SQUARESPACE-WALKTHROUGH.md`** in the repo root to cover the four new pages. It currently documents only Contact, CV and Writing. Keep the same tone and level of detail: literal clicks, `pbcopy` command per page, Language = HTML, Display Source unchecked, select-all before pasting. Add the page-specific notes below.
 
-## Page-specific notes for the walkthrough
+   Report the status of each. This is the most important step. A 404 on any one means that page silently runs on its frozen fallback forever and nothing on screen would reveal it.
 
-**Home.** Currently eight separate Code Blocks. All eight get deleted and replaced by one. Warn that the hero headshot now comes from the HTML rather than a Squarespace image block, so if an image block remains it will duplicate.
+6. **Report back** with the eight URL statuses and anything from steps 2 or 3.
 
-**Work.** Currently five Code Blocks, all replaced by one.
+## Do not
 
-**About.** This one is newly authored rather than ported. Tell him to open the live `/about` side by side and read it against the new version before deleting anything, because there was no saved source to diff against.
-
-**Case study.** One block replaced by one block. Note the Vercel link is currently plain text.
-
-**All four.** Set the section background to match `/work` and `/about`. If two footers appear after pasting, an old standalone footer block is still on the page; delete it.
-
-## Do not do these
-
-- Do not change any page content. A separate content pass is queued and mixing the two makes a bad render impossible to diagnose.
+- Do not edit page content, copy, or styling.
 - Do not touch `Job-Search-2027-2028/Squarespace-Blocks/`. It is retired and marked as such.
-- Leave "15+ in-house tools built for staff and students" in the homepage stat strip alone for now. It contradicts a decision to name specific tools instead of counting them, and it is first on the content-pass list, but it is content, not migration.
+- Do not rewrite the walkthrough documents. They are current and cover all eight pages across two parts.
+- Leave "15+ in-house tools built for staff and students" in the homepage stat strip. It contradicts a decision to name specific tools rather than count them, and it is first on the content-pass list, but it is content, not migration.
 
-## Known content items for the next pass, for context only
+## Queued for the content pass, for context only
 
 - Homepage stat strip still says "15+ in-house tools".
-- Homepage featured projects should swap Parallel Design Labs out for AI Coding for Educators.
-- Work page needs six new rows: AI Coding for Educators, course launchpads, Reflection Tool, UDL Champions, AI Usage Survey and Policy Committee, DP curriculum documentation. Plus status upgrades on Earth and Env and Compass Point.
-- About page needs an accreditation line, the AI Leadership Council, and the Student Advisory Forum leadership role.
+- Homepage featured projects: swap Parallel Design Labs out for AI Coding for Educators.
+- Work page: six new rows, plus status upgrades on Earth and Env and Compass Point, plus a stronger Theatre Booking Manager description now that it has a case study behind it.
+- About page: accreditation line, AI Leadership Council, Student Advisory Forum leadership role.
 
-Full reasoning for every content decision is in `Job-Search-2027-2028/Squarespace-Blocks/Pages/README-PASTE-AND-PUBLISH.md`.
+Reasoning for every content decision is in `Job-Search-2027-2028/Squarespace-Blocks/Pages/README-PASTE-AND-PUBLISH.md`.

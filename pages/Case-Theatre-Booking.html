@@ -1,0 +1,426 @@
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  .mtc{max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;color:#23211E;line-height:1.7;}
+  .mtc-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C2552F;font-weight:600;}
+  .mtc h1{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:clamp(32px,4.2vw,50px);line-height:1.06;letter-spacing:-.02em;margin:14px 0 0;max-width:18em;}
+  .mtc-meta{font-size:14px;color:#6B6760;margin-top:14px;}
+  .mtc-status{display:inline-block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#2F6F5E;background:#E4EFEA;border-radius:2px;padding:4px 10px;margin-top:16px;}
+  .mtc-sec{margin-top:46px;border-top:1px solid #23211E;padding-top:22px;}
+  .mtc-sec > h2{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#C2552F;font-weight:600;margin:0 0 18px;}
+  .mtc p{font-size:17px;max-width:42em;margin:20px 0;}
+  .mtc-lead{font-size:18.5px;}
+  .mtc-dec{display:grid;grid-template-columns:230px 1fr;gap:26px;padding:20px 4px;border-bottom:1px solid #E2DBCF;}
+  .mtc-dec:last-child{border-bottom:0;}
+  .mtc-dec b{font-family:'Fraunces',Georgia,serif;font-size:17px;font-weight:500;color:#2F6F5E;}
+  .mtc-dec p{font-size:15.5px;margin:0;max-width:42em;}
+  .mtc-pull{padding:44px 0;text-align:center;}
+  .mtc-pull p{font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:clamp(21px,2.7vw,29px);line-height:1.42;max-width:24em;margin:0 auto;text-wrap:balance;}
+  .mtc-callout{background:#F4EFE7;border-left:2px solid #C2552F;padding:18px 22px;margin:24px 0;max-width:44em;}
+  .mtc-callout p{font-size:15.5px;margin:0;}
+  .mtc-acts{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+  .mtc-btn{font-size:14px;font-weight:500;padding:12px 22px;border-radius:2px;text-decoration:none;display:inline-block;transition:.15s;}
+  .mtc-btn.solid{background:#23211E;color:#FAF7F2;}
+  .mtc-btn.solid:hover{background:#C2552F;}
+  .mtc-btn.line{border:1px solid #D8CFC0;color:#23211E;}
+  .mtc-btn.line:hover{border-color:#23211E;}
+  @media (max-width:820px){ .mtc-dec{grid-template-columns:1fr;gap:4px;} }
+</style>
+<div class="mtc">
+  <div class="mtc-eyebrow">Case study · School operations</div>
+  <h1>Booking a 780-seat theatre without the email thread</h1>
+  <div class="mtc-meta">American International School Chennai. Built, deployed, and in use across the school.</div>
+  <div class="mtc-status">In use</div>
+
+  <div class="mtc-sec">
+    <h2>The problem</h2>
+    <p class="mtc-lead">Booking the school theatre used to be an email thread. Someone asked whether a date was free, the theatre manager checked a calendar that did not show load-in and load-out time, and an answer came back when it came back.</p>
+    <p>Nothing lived in one place. Double bookings happened. What had actually been agreed, and what equipment had been promised, survived only in whichever inbox still had the thread. When the manager was away, the school had no way to see the state of its own largest room.</p>
+    <p>The theatre seats 780 and nearly every division uses it: concerts, assemblies, drama, admissions events, commencement rehearsals. A space that contested needs a system rather than a habit.</p>
+  </div>
+
+  <div class="mtc-sec">
+    <h2>Four decisions that shaped it</h2>
+    <p>The interesting part of this build was not the code. It was deciding who should be able to see what, who should do which work, and what the system should refuse to do.</p>
+
+    <div class="mtc-dec">
+      <b>Requesters cannot see the calendar</b>
+      <p>This looks like a limitation and it is deliberate. A raw calendar hides the load-in and load-out either side of an event, so a slot that shows as free often is not. Exposing it would have made the flow feel faster while producing worse bookings. Availability decisions stay with the person who knows what a two-hour concert actually costs in stage time.</p>
+    </div>
+    <div class="mtc-dec">
+      <b>The rules live in settings, not in the code</b>
+      <p>Minimum lead time, venue capacity, the weekly digest schedule, the audience-facing row labels, and whether seat one sits on the audience's left or the performer's left. All of it is editable by the theatre manager, takes effect immediately, and needs no developer. A system the operator cannot tune is a system they depend on someone else for.</p>
+    </div>
+    <div class="mtc-dec">
+      <b>The requester lays out their own seating</b>
+      <p>The person running the event knows which group sits where. Routing that through the manager would have created a bottleneck and lost information on the way. So the requester paints their groups onto a faithful grid of the house, and the printed row-end signs generate themselves and arrive by email. The work moved to the person with the knowledge, and it cost them less than the email thread did.</p>
+    </div>
+    <div class="mtc-dec">
+      <b>Every state change is recorded</b>
+      <p>Approvals, rejections, cancellations, ad-hoc bookings, settings changes, seating finalised. Each one attributed and timestamped. Not because anyone expected disputes, but because a shared resource with no record is where disputes come from.</p>
+    </div>
+  </div>
+
+  <div class="mtc-pull">
+    <p>The hard part of an operations tool is not building it. It is deciding what it should refuse to do.</p>
+  </div>
+
+  <div class="mtc-sec">
+    <h2>See it from both sides</h2>
+    <p>The same system, seen by a teacher requesting the space and by the manager running it. Switch roles and move between screens.</p>
+  </div>
+</div>
+
+<style>
+  .mtw{--paper:#FAF7F2;--paper2:#F4EFE7;--panel:#FFFFFF;--ink:#23211E;--muted:#6B6760;
+       --hair:#E2DBCF;--hair2:#D8CFC0;--accent:#C2552F;--accentsoft:#F4E7DF;--teal:#2F6F5E;--tealsoft:#E4EFEA;
+       max-width:1080px;margin:0 auto;font-family:'Inter',system-ui,sans-serif;color:var(--ink);line-height:1.6;}
+  .mtw *{box-sizing:border-box;}
+  .mtw-eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-weight:600;}
+  .mtw-lede{font-size:16px;color:var(--muted);max-width:44em;margin:10px 0 22px;}
+
+  /* role switch */
+  .mtw-roles{display:flex;gap:0;border:1px solid var(--ink);border-radius:2px;overflow:hidden;width:max-content;margin-bottom:6px;}
+  .mtw-role{font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;padding:10px 22px;background:transparent;border:0;cursor:pointer;color:var(--ink);transition:.15s;}
+  .mtw-role + .mtw-role{border-left:1px solid var(--ink);}
+  .mtw-role[aria-selected="true"]{background:var(--ink);color:var(--paper);}
+  .mtw-rolenote{font-size:13px;color:var(--muted);margin:8px 0 18px;min-height:1.4em;}
+
+  /* screen tabs */
+  .mtw-tabs{display:flex;gap:22px;flex-wrap:wrap;border-bottom:1px solid var(--hair);margin-bottom:0;}
+  .mtw-tab{font-size:13px;padding:0 0 9px;background:none;border:0;border-bottom:2px solid transparent;cursor:pointer;color:var(--muted);font-family:inherit;}
+  .mtw-tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent);font-weight:500;}
+
+  /* device frame */
+  .mtw-frame{border:1px solid var(--hair2);border-top:0;background:var(--panel);padding:0;overflow:hidden;}
+  .mtw-bar{display:flex;align-items:center;gap:8px;padding:9px 14px;background:var(--paper2);border-bottom:1px solid var(--hair);}
+  .mtw-dot{width:9px;height:9px;border-radius:50%;background:var(--hair2);}
+  .mtw-url{font-size:11.5px;color:var(--muted);margin-left:6px;font-variant-numeric:tabular-nums;}
+  .mtw-body{padding:22px 24px 26px;}
+  .mtw-screen{display:none;}
+  .mtw-screen.is-on{display:block;}
+
+  .mtw-apphead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--hair);padding-bottom:12px;margin-bottom:18px;}
+  .mtw-apphead h3{font-family:'Fraunces',Georgia,serif;font-size:21px;font-weight:500;margin:0;}
+  .mtw-who{font-size:12px;color:var(--muted);}
+  .mtw-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .mtw-btn{font-size:12.5px;padding:7px 13px;border-radius:2px;border:1px solid var(--hair2);background:transparent;color:var(--ink);cursor:default;}
+  .mtw-btn.solid{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+  .mtw-btn.warn{border-color:var(--accent);color:var(--accent);}
+
+  .mtw-note{font-size:12.5px;color:var(--muted);background:var(--accentsoft);border-left:2px solid var(--accent);padding:9px 12px;margin:0 0 18px;}
+
+  /* form */
+  .mtw-fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
+  .mtw-f{display:flex;flex-direction:column;gap:5px;}
+  .mtw-f.wide{grid-column:1/-1;}
+  .mtw-f label{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:600;}
+  .mtw-in{border:1px solid var(--hair2);border-radius:2px;padding:8px 10px;font-size:13.5px;color:var(--ink);background:#fff;min-height:34px;}
+  .mtw-in.ghost{color:#A8A29A;}
+  .mtw-chips{display:flex;gap:7px;flex-wrap:wrap;}
+  .mtw-chip{font-size:12px;border:1px solid var(--hair2);border-radius:14px;padding:5px 11px;color:var(--muted);}
+  .mtw-chip.on{border-color:var(--teal);background:var(--tealsoft);color:var(--teal);font-weight:500;}
+
+  /* lists */
+  .mtw-row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding:13px 4px;border-bottom:1px solid var(--hair);}
+  .mtw-row:last-child{border-bottom:0;}
+  .mtw-rt{font-family:'Fraunces',Georgia,serif;font-size:16.5px;}
+  .mtw-rs{font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .mtw-tag{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;}
+  .mtw-tag.conf{background:var(--tealsoft);color:var(--teal);}
+  .mtw-tag.tent{background:#FBF0D9;color:#8A6A18;}
+  .mtw-tag.canc{background:#F0EDE8;color:#8A857D;}
+  .mtw-link{font-size:12.5px;color:var(--accent);white-space:nowrap;}
+
+  /* dashboard */
+  .mtw-two{display:grid;grid-template-columns:1.25fr .95fr;gap:26px;}
+  .mtw-h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 10px;}
+  .mtw-card{border:1px solid var(--hair);border-left:2px solid var(--accent);padding:12px 14px;margin-bottom:10px;}
+  .mtw-card .mtw-rt{font-size:15.5px;}
+  .mtw-badge{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--hair2);padding:2px 6px;border-radius:2px;margin-left:8px;}
+  .mtw-week div{font-size:12.5px;padding:6px 0;border-bottom:1px dotted var(--hair);color:var(--muted);}
+  .mtw-week div b{color:var(--ink);font-weight:500;}
+  .mtw-log{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .mtw-log div{padding:5px 0;border-bottom:1px dotted var(--hair);}
+  .mtw-log b{color:var(--teal);font-weight:600;}
+
+  /* seating */
+  .mtw-seatwrap{display:grid;grid-template-columns:1fr 210px;gap:22px;align-items:start;}
+  .mtw-stage{text-align:center;font-size:10.5px;letter-spacing:.22em;color:var(--muted);border:1px solid var(--hair2);padding:5px;margin-bottom:12px;background:var(--paper2);}
+  .mtw-grid{display:grid;grid-template-columns:repeat(26,1fr);gap:2px;}
+  .mtw-s{aspect-ratio:1;border-radius:1px;background:#EDE8E0;}
+  .mtw-s.gap{background:transparent;}
+  .mtw-s.g1{background:#2F6F5E;} .mtw-s.g2{background:#C2552F;} .mtw-s.g3{background:#7FA8C9;}
+  .mtw-s.g4{background:#D9A441;} .mtw-s.g5{background:#8E6FA8;} .mtw-s.g6{background:#4A5B53;}
+  .mtw-leg div{display:flex;align-items:center;gap:8px;font-size:12px;padding:5px 0;border-bottom:1px solid var(--hair);}
+  .mtw-sw{width:11px;height:11px;border-radius:2px;flex:0 0 auto;}
+  .mtw-leg small{color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums;}
+  .mtw-tot{margin-top:12px;font-size:12.5px;color:var(--muted);}
+  .mtw-tot b{color:var(--ink);}
+
+  /* settings */
+  .mtw-set{display:grid;grid-template-columns:190px 1fr;gap:10px 16px;font-size:13.5px;}
+  .mtw-set dt{color:var(--teal);font-family:'Fraunces',Georgia,serif;}
+  .mtw-set dd{margin:0;color:var(--ink);border-bottom:1px solid var(--hair);padding-bottom:9px;}
+  .mtw-set dd small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;}
+
+  .mtw-cap{font-size:12.5px;color:var(--muted);margin-top:14px;font-style:italic;}
+
+  @media (max-width:820px){
+    .mtw-fgrid,.mtw-two,.mtw-seatwrap{grid-template-columns:1fr;}
+    .mtw-set{grid-template-columns:1fr;gap:2px 0;}
+    .mtw-set dd{margin-bottom:10px;}
+    .mtw-tabs{gap:14px;}
+  }
+</style>
+
+<div class="mtw">
+  <div class="mtw-eyebrow">Interactive wireframe</div>
+  <p class="mtw-lede">The same system seen from both sides. A teacher requests the space and manages their own seating; the theatre manager approves, oversees the calendar, and tunes the rules without touching code. Switch roles to compare.</p>
+
+  <div class="mtw-roles" role="tablist" aria-label="Choose a role">
+    <button class="mtw-role" role="tab" aria-selected="true"  data-role="teacher">Teacher view</button>
+    <button class="mtw-role" role="tab" aria-selected="false" data-role="manager">Manager view</button>
+  </div>
+  <div class="mtw-rolenote" id="mtw-rolenote">Any signed-in staff member. Sees only their own bookings.</div>
+
+  <div class="mtw-tabs" id="mtw-tabs" role="tablist" aria-label="Screens"></div>
+
+  <div class="mtw-frame">
+    <div class="mtw-bar"><span class="mtw-dot"></span><span class="mtw-dot"></span><span class="mtw-dot"></span><span class="mtw-url" id="mtw-url">/exec?view=form</span></div>
+    <div class="mtw-body">
+
+      <!-- ============ TEACHER ============ -->
+      <section class="mtw-screen is-on" data-role="teacher" data-screen="Request the space">
+        <div class="mtw-apphead"><h3>Request the FAC Theatre</h3><span class="mtw-who">signed in as a staff member</span></div>
+        <p class="mtw-note">Bookings inside 14 days' notice are arranged directly with the theatre manager. Everything else comes through here.</p>
+        <div class="mtw-fgrid">
+          <div class="mtw-f wide"><label>Event name</label><div class="mtw-in">Spring Concert</div></div>
+          <div class="mtw-f"><label>Requesting group</label><div class="mtw-in">Music Department</div></div>
+          <div class="mtw-f"><label>Where to find you</label><div class="mtw-in">Music room, Building C</div></div>
+          <div class="mtw-f"><label>Date</label><div class="mtw-in">Sat 14 June 2026</div></div>
+          <div class="mtw-f"><label>Start and end</label><div class="mtw-in">6:30 pm to 8:00 pm</div></div>
+          <div class="mtw-f wide"><label>Materials</label>
+            <div class="mtw-chips">
+              <span class="mtw-chip on">Projector and screen</span><span class="mtw-chip on">4 microphones</span>
+              <span class="mtw-chip on">Podium</span><span class="mtw-chip on">Slides / video / sound</span>
+              <span class="mtw-chip">Risers</span>
+            </div>
+          </div>
+          <div class="mtw-f wide"><label>Anything else</label><div class="mtw-in ghost">House lights dimmed for the second half.</div></div>
+        </div>
+        <p class="mtw-cap">The requester supplies event time only. Load-in and load-out buffers are added by the manager, so the calendar stays truthful.</p>
+      </section>
+
+      <section class="mtw-screen" data-role="teacher" data-screen="My requests" data-url="/exec?view=my_requests">
+        <div class="mtw-apphead"><h3>My requests</h3><div class="mtw-actions"><span class="mtw-btn solid">+ New request</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Spring Concert</div><div class="mtw-rs">Music Dept · Sat 14 Jun, 6:30 pm to 8:00 pm</div></div><div><span class="mtw-tag tent">Tentative</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Grade 3 Assembly</div><div class="mtw-rs">Elementary · Thu 6 Jun, 9:00 am to 10:00 am · signs sent</div></div><div><span class="mtw-tag conf">Confirmed</span> <span class="mtw-link">Seating →</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Math Olympiad</div><div class="mtw-rs">High School · Fri 28 Aug, 1:00 pm to 4:00 pm</div></div><div><span class="mtw-tag conf">Confirmed</span> <span class="mtw-link">Seating →</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Dance recital</div><div class="mtw-rs">Dance · Sat 5 Apr, 6:00 pm to 8:00 pm</div></div><div><span class="mtw-tag canc">Cancelled</span></div></div>
+        <p class="mtw-cap">A teacher sees only their own bookings. No calendar browsing, because a raw calendar hides load-in time and reads as available when it is not.</p>
+      </section>
+
+      <section class="mtw-screen" data-role="teacher" data-screen="Seating" data-url="/exec?view=seating">
+        <div class="mtw-apphead"><h3>Seating: Spring Concert</h3><div class="mtw-actions"><span class="mtw-btn">Place</span><span class="mtw-btn">Erase</span><span class="mtw-btn">Block</span><span class="mtw-btn solid">Generate signs</span></div></div>
+        <p class="mtw-note">Placed 32 more seats for Elementary. 96 of 252 done, 156 still to place. Click another seat to continue.</p>
+        <div class="mtw-seatwrap">
+          <div>
+            <div class="mtw-stage">S T A G E</div>
+            <div class="mtw-grid" id="mtw-grid" aria-hidden="true"></div>
+          </div>
+          <div>
+            <div class="mtw-h4">Groups</div>
+            <div class="mtw-leg">
+              <div><span class="mtw-sw" style="background:#2F6F5E"></span>Band and Choir<small>193</small></div>
+              <div><span class="mtw-sw" style="background:#C2552F"></span>Elementary<small>96 / 252</small></div>
+              <div><span class="mtw-sw" style="background:#7FA8C9"></span>High School<small>149</small></div>
+              <div><span class="mtw-sw" style="background:#D9A441"></span>Middle School<small>112</small></div>
+              <div><span class="mtw-sw" style="background:#8E6FA8"></span>Flag bearers<small>59</small></div>
+              <div><span class="mtw-sw" style="background:#4A5B53"></span>Staff<small>15</small></div>
+            </div>
+            <div class="mtw-tot">Placed <b>624</b> of <b>780</b><br>Remaining 156</div>
+          </div>
+        </div>
+        <p class="mtw-cap">Click a seat and it fills contiguously up to the group size, stopping at aisles and row ends. Printed signs generate one per block.</p>
+      </section>
+
+      <!-- ============ MANAGER ============ -->
+      <section class="mtw-screen" data-role="manager" data-screen="Dashboard" data-url="/exec?view=dashboard">
+        <div class="mtw-apphead"><h3>Theatre dashboard</h3><div class="mtw-actions"><span class="mtw-btn">+ New booking</span><span class="mtw-btn">All bookings</span><span class="mtw-btn">Settings</span></div></div>
+        <div class="mtw-two">
+          <div>
+            <div class="mtw-h4">Pending approval · 2 requests</div>
+            <div class="mtw-card"><div class="mtw-rt">Spring Concert<span class="mtw-badge">requester</span></div><div class="mtw-rs">Music Dept · Sat 14 Jun, 6:30 pm to 8:00 pm · submitted 12 days ago</div></div>
+            <div class="mtw-card"><div class="mtw-rt">Grade 5 Showcase<span class="mtw-badge">manager</span></div><div class="mtw-rs">Elementary · Thu 19 Jun, 9:00 am to 10:30 am · submitted 3 days ago</div></div>
+            <div class="mtw-h4" style="margin-top:20px">This week</div>
+            <div class="mtw-week">
+              <div>Mon 25 May · <b>MS Assembly rehearsal</b> 10:00 am</div>
+              <div>Tue 26 May · today · no events</div>
+              <div>Wed 27 May · <b>HS Theatre Production, dress</b> 6:00 pm</div>
+              <div>Thu 28 May · no events</div>
+            </div>
+          </div>
+          <div>
+            <div class="mtw-h4">Recent activity</div>
+            <div class="mtw-log">
+              <div>12:32 <b>APPROVED</b> Spring Concert</div>
+              <div>09:15 <b>SETTINGS_CHANGE</b> manager email</div>
+              <div>Yesterday <b>CREATE</b> manager ad hoc</div>
+              <div>Yesterday <b>AUTO_CANCEL</b> ES rehearsal</div>
+              <div>2 days ago <b>CREATE</b> Grade 5 Showcase</div>
+              <div>3 days ago <b>SIGNS_SENT</b></div>
+            </div>
+            <div class="mtw-h4" style="margin-top:20px">Next week</div>
+            <div class="mtw-tot">4 events on the calendar<br><b>2 need attention</b><br>1 pending approval<br>1 unfinalised seating</div>
+          </div>
+        </div>
+        <p class="mtw-cap">Every state change is written to an audit log. The weekly digest goes out Monday at 08:00.</p>
+      </section>
+
+      <section class="mtw-screen" data-role="manager" data-screen="Approve or reject" data-url="/exec?view=approve">
+        <div class="mtw-apphead"><h3>Review booking request</h3><span class="mtw-who">manager only</span></div>
+        <div class="mtw-fgrid">
+          <div class="mtw-f"><label>Event</label><div class="mtw-in">Spring Concert</div></div>
+          <div class="mtw-f"><label>Group</label><div class="mtw-in">Music Department</div></div>
+          <div class="mtw-f"><label>When</label><div class="mtw-in">Sat 14 Jun, 6:30 pm to 8:00 pm</div></div>
+          <div class="mtw-f"><label>Find the requester</label><div class="mtw-in">Music room, Building C</div></div>
+          <div class="mtw-f wide"><label>Materials</label>
+            <div class="mtw-chips"><span class="mtw-chip on">Projector, stage</span><span class="mtw-chip on">4 mics</span><span class="mtw-chip on">Podium</span><span class="mtw-chip on">Slides / video / sound</span></div>
+          </div>
+          <div class="mtw-f wide"><label>Additional requests</label><div class="mtw-in">House lights dimmed for the second half.</div></div>
+          <div class="mtw-f wide"><label>Who paints the seating</label>
+            <div class="mtw-chips"><span class="mtw-chip on">Requester does their own</span><span class="mtw-chip">Manager handles it</span></div>
+          </div>
+        </div>
+        <div class="mtw-actions" style="margin-top:18px"><span class="mtw-btn solid">Approve</span><span class="mtw-btn warn">Reject with reason</span></div>
+        <p class="mtw-cap">Opened from the notification email. The role is checked twice, once on load and again on submit, so a forwarded link cannot approve anything.</p>
+      </section>
+
+      <section class="mtw-screen" data-role="manager" data-screen="All bookings" data-url="/exec?view=bookings_list">
+        <div class="mtw-apphead"><h3>All bookings</h3><div class="mtw-actions"><span class="mtw-btn">Search</span><span class="mtw-btn">Status ▾</span><span class="mtw-btn">Seating ▾</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Spring Concert</div><div class="mtw-rs">Music · Sat 14 Jun · seating unassigned</div></div><div><span class="mtw-tag tent">Tentative</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Grade 3 Assembly</div><div class="mtw-rs">Elementary · Thu 6 Jun · signs sent</div></div><div><span class="mtw-tag conf">Confirmed</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">HS Theatre Production</div><div class="mtw-rs">High School · Wed 27 May · seating unassigned</div></div><div><span class="mtw-tag tent">Tentative</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">MS Drama showcase</div><div class="mtw-rs">Middle School · Sat 8 Jun · seating finalised</div></div><div><span class="mtw-tag conf">Confirmed</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Commencement rehearsal</div><div class="mtw-rs">Added by the manager · Tue 16 Jun</div></div><div><span class="mtw-tag conf">Confirmed</span></div></div>
+        <div class="mtw-row"><div><div class="mtw-rt">Dance recital</div><div class="mtw-rs">Dance · Sat 5 Apr</div></div><div><span class="mtw-tag canc">Cancelled</span></div></div>
+        <p class="mtw-cap">Everything on the calendar from 90 days back to a year ahead, cancellations included, because the record of what was cancelled matters too.</p>
+      </section>
+
+      <section class="mtw-screen" data-role="manager" data-screen="Settings" data-url="/exec?view=settings">
+        <div class="mtw-apphead"><h3>Settings</h3><span class="mtw-who">changes apply immediately</span></div>
+        <p class="mtw-note">The rules of the system live here, not in the code. Nothing on this page needs a developer.</p>
+        <dl class="mtw-set">
+          <dt>Space and capacity</dt><dd>FAC Theatre · 780 seats</dd>
+          <dt>Minimum lead time</dt><dd>14 days<small>How far ahead a teacher must book before the request needs a conversation instead.</small></dd>
+          <dt>Weekly digest</dt><dd>Mondays, 08:00<small>Summary of the week ahead and anything still needing a decision.</small></dd>
+          <dt>Allowed domain</dt><dd>School Workspace domain only</dd>
+          <dt>Row labels</dt><dd>Front 1 to 6 · Main 7 to 22<small>Audience-facing labels printed onto the seating signs.</small></dd>
+          <dt>Seat numbering</dt><dd>House left<small>Seat 1 on the audience's left, or switch to the performer's left.</small></dd>
+        </dl>
+        <p class="mtw-cap">Handing the settings to the person who runs the space is the difference between a tool they own and a tool they depend on someone else for.</p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var root = document.currentScript.closest('div') || document;
+  var wrap = document.querySelector('.mtw');
+  if (!wrap) return;
+  var screens = [].slice.call(wrap.querySelectorAll('.mtw-screen'));
+  var tabs = wrap.querySelector('#mtw-tabs');
+  var urlEl = wrap.querySelector('#mtw-url');
+  var noteEl = wrap.querySelector('#mtw-rolenote');
+  var NOTES = {
+    teacher: 'Any signed-in staff member. Sees only their own bookings.',
+    manager: 'One person, gated by role. Sees everything, and sets the rules.'
+  };
+  var current = 'teacher';
+
+  function show(screen) {
+    screens.forEach(function (s) { s.classList.toggle('is-on', s === screen); });
+    urlEl.textContent = screen.getAttribute('data-url') || '/exec?view=form';
+    [].forEach.call(tabs.children, function (b) {
+      b.setAttribute('aria-selected', b._screen === screen ? 'true' : 'false');
+    });
+  }
+
+  function buildTabs(role) {
+    tabs.textContent = '';
+    var mine = screens.filter(function (s) { return s.getAttribute('data-role') === role; });
+    mine.forEach(function (s, i) {
+      var b = document.createElement('button');
+      b.className = 'mtw-tab';
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.textContent = s.getAttribute('data-screen');
+      b._screen = s;
+      b.addEventListener('click', function () { show(s); });
+      tabs.appendChild(b);
+      if (i === 0) { show(s); }
+    });
+  }
+
+  [].forEach.call(wrap.querySelectorAll('.mtw-role'), function (btn) {
+    btn.addEventListener('click', function () {
+      current = btn.getAttribute('data-role');
+      [].forEach.call(wrap.querySelectorAll('.mtw-role'), function (b) {
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+      noteEl.textContent = NOTES[current];
+      buildTabs(current);
+    });
+  });
+
+  // seat grid: 26 columns with aisles at 6 and 20. Groups sit in solid row bands.
+  // Elementary is the active group and is deliberately part-filled, matching 96 of 252.
+  var grid = wrap.querySelector('#mtw-grid');
+  if (grid) {
+    var ROWS = 14, COLS = 26, AISLES = [6, 20];
+    var band = ['g6','g5','g5','g1','g1','g1','g2','g2','g2','g3','g3','g4','g4','g4'];
+    var html = '';
+    for (var r = 0; r < ROWS; r++) {
+      for (var c = 0; c < COLS; c++) {
+        if (AISLES.indexOf(c) > -1) { html += '<span class="mtw-s gap"></span>'; continue; }
+        // front rows are narrower, so the house reads like a real auditorium
+        var inset = r < 2 ? 3 : (r < 4 ? 2 : 0);
+        if (c < inset || c > COLS - 1 - inset) { html += '<span class="mtw-s gap"></span>'; continue; }
+        var g = band[r];
+        // active group: fill roughly the first 38 per cent, leave the rest unplaced
+        if (g === 'g2') {
+          var seq = (r - 6) * COLS + c;
+          if (seq > Math.round(3 * COLS * 0.38)) { html += '<span class="mtw-s"></span>'; continue; }
+        }
+        html += '<span class="mtw-s ' + g + '"></span>';
+      }
+    }
+    grid.innerHTML = html;
+  }
+
+  buildTabs('teacher');
+}());
+</script>
+
+<div class="mtc">
+  <div class="mtc-sec">
+    <h2>What is not built yet</h2>
+    <p>Amendments and cancellations still go through the manager by email. A requester who needs to move a date replies to the approval email and the manager updates it on her side.</p>
+    <div class="mtc-callout">
+      <p>That is a phase boundary rather than an oversight. Approving requests and laying out seating were the two things that actually hurt, so they shipped first and the rest waited. In-app amendments are the next phase. I would rather ship the painful half and say so than hold everything back for a complete version nobody is using yet.</p>
+    </div>
+  </div>
+
+  <div class="mtc-sec">
+    <h2>Why it travels</h2>
+    <p>None of this is really about theatres. Every school has a small number of contested shared resources, and most of them are run on memory, goodwill, and a thread. A gym, a maker space, a bus, a set of iPad carts, a room with the good projector in it.</p>
+    <p>The pattern transfers unchanged: one source of truth, a named person who can approve, the operating rules owned by the operator rather than buried in code, the work pushed to whoever holds the knowledge, and a record of who decided what. The theatre was simply the version of the problem that was costing the most.</p>
+  </div>
+
+  <div class="mtc-acts">
+    <a class="mtc-btn line" href="/work">← Back to all work</a>
+    <a class="mtc-btn solid" href="/cv">Read the CV</a>
+  </div>
+</div>
