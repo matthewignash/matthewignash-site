@@ -41,6 +41,16 @@
   .mc-case .spot-btn:hover{border-color:var(--ink);}
   .mc-case .spot-result{font-size:15px;line-height:1.6;margin-top:16px;min-height:1.2em;color:var(--ink);}
   .mc-case .spot-result.ok{color:#1d4a3e;}
+
+  .mc-case .spot-in{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;}
+  .mc-case .claim{display:inline;}
+  .mc-case .claim:focus-visible,.mc-case .spot-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .mc-case .spot-msg{display:none;}
+  .mc-case .spot-btn{display:inline-block;cursor:pointer;}
+  #ee-s1:checked ~ .spot-para .c1,#ee-s3:checked ~ .spot-para .c3,#ee-s4:checked ~ .spot-para .c4{background:var(--paper-2);border-bottom-color:var(--hair);}
+  #ee-s2:checked ~ .spot-para .c2,#ee-sr:checked ~ .spot-para .c2{background:var(--teal-soft);border-bottom:1.5px solid var(--teal);color:#1d4a3e;}
+  #ee-s1:checked ~ .spot-result .m-ok,#ee-s3:checked ~ .spot-result .m-ok,#ee-s4:checked ~ .spot-result .m-ok{display:inline;}
+  #ee-s2:checked ~ .spot-result .m-err,#ee-sr:checked ~ .spot-result .m-err{display:inline;color:#1d4a3e;}
   .mc-case .spot-tie{font-size:15px;color:var(--muted);}
 
   /* Framework anchor */
@@ -95,7 +105,6 @@
     <div class="meta">American International School Chennai, 2026–27. My framework, and mine to carry forward.</div>
     <div class="acts">
       <a class="btn solid" href="https://hs-earth-env-site.vercel.app/">View the live course site ↗</a>
-      <a class="btn line" href="/curriculum-vitae">Read the CV</a>
     </div>
   </div>
 
@@ -123,12 +132,21 @@
     <h2>Try it: spot what the AI got wrong</h2>
     <p>Here is a confident AI answer about a real earthquake. One specific fact is wrong. Finding it is the move every student makes, every time. Click the claim you would check.</p>
     <div class="spot">
-      <p class="spot-para">The 1964 Great Alaska earthquake struck near Anchorage on <span class="claim" data-a="0">27 March 1964</span>. It registered a moment magnitude of <span class="claim" data-a="1">9.0</span>, making it the most powerful earthquake in <span class="claim" data-a="0">North American history</span>. The shaking lasted about <span class="claim" data-a="0">four and a half minutes</span> and triggered a tsunami that reached the coast of California.</p>
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-s0" checked>
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-s1">
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-s2">
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-s3">
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-s4">
+      <input class="spot-in" type="radio" name="ee-spot" id="ee-sr">
+      <p class="spot-para">The 1964 Great Alaska earthquake struck near Anchorage on <label class="claim c1" for="ee-s1" tabindex="0">27 March 1964</label>. It registered a moment magnitude of <label class="claim c2" for="ee-s2" tabindex="0">9.0</label>, making it the most powerful earthquake in <label class="claim c3" for="ee-s3" tabindex="0">North American history</label>. The shaking lasted about <label class="claim c4" for="ee-s4" tabindex="0">four and a half minutes</label> and triggered a tsunami that reached the coast of California.</p>
       <div class="spot-actions">
-        <button class="spot-btn" id="spot-reveal">Reveal the answer</button>
-        <button class="spot-btn" id="spot-reset">Reset</button>
+        <label class="spot-btn" for="ee-sr" tabindex="0">Reveal the answer</label>
+        <label class="spot-btn" for="ee-s0" tabindex="0">Reset</label>
       </div>
-      <div class="spot-result" id="spot-result"></div>
+      <div class="spot-result">
+        <span class="spot-msg m-ok">That one checks out. Look again at the figure the AI states most plainly.</span>
+        <span class="spot-msg m-err">Correct. The AI stated magnitude 9.0. The actual value is 9.2 (USGS). Small, but in science the specific number matters, and the student who catches it is the one who was checking.</span>
+      </div>
     </div>
     <p class="spot-tie">That is the whole skill: treat the AI as a source, verify the confident specifics, and document what it got wrong.</p>
   </div>
@@ -245,38 +263,12 @@
   </div>
 
   <div class="sec">
-    <h2>Why it travels</h2>
+    <h2>Where else this fits</h2>
     <p>The framework is subject-agnostic. I built it in Earth and Environmental Science, but the source discipline, the documentation habit, and the visible-by-design language support transfer to any course, and I carry them forward into new material. In the end it is less about a tool and more about a stance: AI as a source to be evaluated, never a substitute for judgment.</p>
     <div class="tags"><b>Role:</b> Designed and built the course, the framework, and the measurement. &nbsp;·&nbsp; <b>Tags:</b> Curriculum · Responsible AI · Assessment · Multilingual learners</div>
   </div>
 
 </div>
-<script>
-(function(){
-  var claims = document.querySelectorAll('.mc-case .spot .claim');
-  var result = document.getElementById('spot-result');
-  if(!claims.length || !result) return;
-  var ERR = "Correct. The AI stated magnitude 9.0. The actual value is 9.2 (USGS). Small, but in science the specific number matters, and the student who catches it is the one who was checking.";
-  var OK = "That one checks out. Look again at the figure the AI states most plainly.";
-  claims.forEach(function(c){
-    c.addEventListener('click', function(){
-      if(c.dataset.a === '1'){ c.classList.add('right'); result.textContent = ERR; result.className = 'spot-result ok'; }
-      else { c.classList.add('checked'); result.textContent = OK; result.className = 'spot-result'; }
-    });
-  });
-  var rev = document.getElementById('spot-reveal');
-  var res = document.getElementById('spot-reset');
-  if(rev) rev.addEventListener('click', function(){
-    claims.forEach(function(c){ if(c.dataset.a === '1') c.classList.add('right'); });
-    result.textContent = ERR; result.className = 'spot-result ok';
-  });
-  if(res) res.addEventListener('click', function(){
-    claims.forEach(function(c){ c.classList.remove('right'); c.classList.remove('checked'); });
-    result.textContent = ''; result.className = 'spot-result';
-  });
-})();
-</script>
-
 <!-- SITE FOOTER. Identical on every page; edit all of them together, or none.
      Kept as markup rather than Squarespace's native footer social icons so the
      styling stays ours. Squarespace has the same four accounts configured in its
