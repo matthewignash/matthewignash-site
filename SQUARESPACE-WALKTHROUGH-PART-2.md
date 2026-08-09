@@ -139,3 +139,31 @@ Two files in the Theatre Management Dashboard folder are good internal documents
 - `Documentation/Theatre-Booking-Manager_IT-Handoff.docx`
 
 Both contain real staff email addresses throughout. The case study page carries none, and no individual is named on it.
+
+---
+
+## 10. Hall pass case study, a second new page
+
+Same shape as the theatre case study. This page does not exist yet, so you create it.
+
+```
+cat ~/Documents/Claude/Projects/Publication\ Work/1-Projects/matthewignash-site/paste/Case-Hall-Pass.html | pbcopy
+```
+
+1. **Pages** panel → **+** → **Blank Page**.
+2. Name it **From a paper sheet to a system IT owns**.
+3. Drag it into **Not Linked**, alongside the other two case studies. It is reached from the Work page, not the top nav.
+4. **Set the URL slug to `replacing-the-paper-hall-pass`.** It must match exactly, because the Work page links to it.
+5. **Edit** → add a Code Block → **Cmd+A** → paste → **Language = HTML** → **Display Source unchecked**.
+6. Set the section background to match `/work`. **Save**.
+
+**Test the wireframe.** It is CSS-only, so unlike everything else here it also works inside the Squarespace editor. That is a useful shortcut: if the role buttons work while you are editing, they will work published.
+
+- Click **In the office**. The tab row should change from "Open a pass / Close a pass" to "Live now / History".
+- On **Live now** you should see the coloured donut and the block bars, with Period 3 as the tallest.
+
+**Three Work page rows now link out.** Earth and Env, Theatre Booking Manager, and Digital Hall Pass. Each carries the `↗` arrow. The other nine rows are plain and have no arrow, which is deliberate.
+
+### A note on this page's honesty
+
+This case study says plainly that the prototype was a demonstrator and was never run with students, and that IT owns version two. That is not modesty, it is the thing that makes the rest of the page credible. If a reference call ever comes, everything on this page will match what the Assistant Principal and IT would say about it.

@@ -4,49 +4,55 @@ Paste everything below the line into Claude Code, run from the repo folder.
 
 ---
 
-Three fixes are already applied in the working tree of `matthewignash-site`. Your job is to review them, commit, push, and verify. **Do not rewrite the page content.**
+New work is sitting in the working tree of `matthewignash-site`. Review it, commit, push, and verify. **Do not rewrite page content.**
 
 `~/Documents/Claude/Projects/Publication Work/1-Projects/matthewignash-site`
 
-## What changed and why
+## What is new
 
-**1. Both case studies are now JavaScript-free.**
+**`pages/Case-Hall-Pass.html`** is a third case study, container `mi-case-hallpass`, slug **`replacing-the-paper-hall-pass`**. Title: "From a paper sheet to a system the IT department owns."
 
-`pages/Case-Theatre-Booking.html` and `pages/Case-Earth-Env.html` had interactive widgets driven by `<script>`. Those are now pure CSS, using hidden radio inputs and `:checked ~` sibling selectors. Both were click-tested: correct screen, tab set, URL, role highlight and result message in every state, with zero JS errors.
+It embeds an interactive wireframe of the digital hall pass, `.mhp-` prefix, showing the classroom tablet and the admin dashboard. **CSS-only, no JavaScript**, using hidden radio inputs and `:checked ~` selectors, the same pattern as the theatre case study. Click-tested: correct screen, tab set and URL in all four states, zero JS errors.
 
-This supersedes the `enhance()` approach currently in `build.py`. That mechanism works, but it puts a page's JavaScript in the **pasted** block while the markup it controls lives in **GitHub**. Rename a class in `pages/`, push, and the frozen script silently stops matching, which shows up as a broken widget rather than an obviously stale page. CSS-only cannot drift, works in the Squarespace editor where the fetch never runs, and survives JavaScript being disabled.
+Also changed:
 
-**Leave the `enhance()` slot in `build.py`.** It is harmless, `page_script` is now empty for every page, and it stays available if something genuinely needs JS later. Do not delete it and do not reintroduce scripts into these two pages.
+- `build.py` extended from eight pages to nine.
+- `pages/Work-Page.html`: the **Digital Hall Pass** row is now an anchor to the new slug with its `↗` arrow restored. Three rows link out now: Earth and Env, Theatre Booking Manager, Digital Hall Pass. The other nine stay plain with no arrow, deliberately.
+- `pages/Case-Theatre-Booking.html`: removed a duplicated intro. The case section introduced the wireframe and then the wireframe introduced itself again. Content only, no structural change.
+- `SQUARESPACE-WALKTHROUGH-PART-2.md`: new section 10 covering the new page.
+- `drafts/Hallpass-Wireframe.html`: the standalone wireframe, kept for reference.
 
-**2. The four "Read the CV" buttons are removed**, at Matthew's request. They were a second route to a page the nav already reaches, and the theatre one pointed at `/cv`, which 404s because the page actually lives at `/curriculum-vitae`.
+## Context so you do not "correct" deliberate choices
 
-Removed from `Home-Page.html`, `About-Page.html`, `Case-Earth-Env.html`, `Case-Theatre-Booking.html`. Each button group had two buttons, so the survivor was promoted to the solid style where needed. What remains: Home "See the work", About "Get in touch", Earth and Env "View the live course site", Theatre "Back to all work".
+**Attribution on this page is load-bearing and was verified with Matthew directly.** Do not soften it, do not strengthen it:
 
-No page links to `/cv` or `/curriculum-vitae` any more, so the URL Mapping noted in the CV page header comment is no longer needed. That comment has been corrected.
+- He built a **demonstrator**, in Apps Script and HTML. It was **never run with students**. The page says so explicitly, in a callout. That sentence stays.
+- The demonstrator had a digital teacher-approval step. It was cut because it forced teachers into their email mid-lesson to formalise a decision they had already made out loud.
+- **IT owns version two** and is actively building it on the RFID student ID cards the school deployed this year. He is still in the conversation with the Assistant Principal but is not writing the code.
+- The status pill reads **"In development"**, not "In use". The theatre case study reads "In use". That difference is intentional and correct.
 
-**3. "Why it travels" is renamed to "Where else this fits"** on both case studies. Matthew disliked the phrase. Do not reintroduce it.
+**Privacy.** The source mockups and the prototype spreadsheet contain real email addresses, a real student information system export, and named staff. None of it is on this page. Verified zero matches for `aischennai`, `Justyna`, `Chris`, and any six-digit student ID. Illustrative rows use "Student A" through "Student G" with no ID numbers, and no staff are named. **Keep it that way.**
 
-## Your tasks
+## Tasks
 
-1. Review `git diff`. The only changes should be: script removal plus CSS state rules on the two case studies, four anchor deletions plus two class promotions, one section heading on each case study, and the CV page header comment.
-2. Run `python3 build.py`. Confirm `paste/` regenerates all eight pages.
-3. **Verify no scripts crept back:** `grep -c '<script' pages/*.html` must be 0 for every page.
-4. **Verify the buttons are gone:** `grep -rn 'Read the CV' pages/` should return only the CV page header comment.
-5. **Verify no dead CV links:** `grep -rn 'href="/cv"' pages/` should return nothing.
-6. Commit and push. Suggested message: `CSS-only case study widgets, drop the Read the CV buttons`.
-7. **Curl all eight raw URLs** and report HTTP status for each:
+1. Review `git diff`.
+2. Run `python3 build.py`. Confirm `paste/` regenerates all **nine** pages.
+3. Verify no scripts: `grep -c '<script' pages/*.html` should be 0 everywhere. The CV page reports 1, which is a false positive from the string `<script` inside a CSS comment. Confirm that is what it is and move on.
+4. Verify privacy on the new page: zero matches for `aischennai`, `Justyna`, `Chris`, `csara`, and `\b1\d{5}\b`.
+5. Verify the Work page has exactly three `<a class="mwk-row"` anchors and three `mwk-arrow` spans.
+6. Commit and push. Suggested message: `Add the hall pass case study and link it from Work`.
+7. **Curl all nine raw URLs** and report HTTP status for each:
    `https://raw.githubusercontent.com/matthewignash/matthewignash-site/main/pages/<FILENAME>`
-
-## Then update the walkthrough
-
-`SQUARESPACE-WALKTHROUGH-PART-2.md` has two statements that are now wrong. Fix only these:
-
-- The Earth and Env section says the course site link "is now plain text rather than a broken link". It is now a real link to `https://hs-earth-env-site.vercel.app/`. Correct it.
-- The theatre section's wireframe test says to check that clicking Manager view changes the tab count. Keep that test, but note the widget is CSS-only, so it also works in the Squarespace editor. That is a useful signal: if it works while editing, it will work published.
+8. Report the nine statuses plus anything from steps 3 to 5.
 
 ## Do not
 
-- Do not reintroduce `<script>` into any page.
-- Do not restore the "Read the CV" buttons.
+- Do not add `<script>` to any page.
+- Do not change the attribution wording, the "never run with students" callout, or the "In development" status.
+- Do not name the Assistant Principal, the IT staff member, or any student.
 - Do not touch `Job-Search-2027-2028/Squarespace-Blocks/`, which is retired.
-- Leave "15+ in-house tools built for staff and students" in the homepage stat strip. It is on the content-pass list, but it is content, not this fix.
+- Leave "15+ in-house tools built for staff and students" in the homepage stat strip. Content pass, not this one.
+
+## Still queued for the content pass
+
+Homepage stat strip wording; swapping Parallel Design Labs for AI Coding for Educators in the homepage featured three; six new Work rows plus status upgrades; About page additions. Reasoning lives in `Job-Search-2027-2028/Squarespace-Blocks/Pages/README-PASTE-AND-PUBLISH.md`.
